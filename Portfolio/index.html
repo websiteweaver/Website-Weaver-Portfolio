@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Full-stack web development by Elissa A. Crafting modern, high-converting websites with AI-assisted development. Static sites, portfolios, landing pages, and business websites." />
+<meta name="keywords" content="Website Weaver,web development,Elissa A,web design,portfolio websites,landing pages,business websites,Netlify,AI-assisted development" />
+<meta name="author" content="Elissa A." />
+<meta property="og:title" content="Website Weaver — Crafting Digital Masterpieces, One Thread at a Time" />
+<meta property="og:description" content="Full-stack web development crafting modern, high-converting websites." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://website-weaver.dev" />
+<meta property="og:site_name" content="Website Weaver" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Website Weaver — Crafting Digital Masterpieces" />
+<meta name="twitter:description" content="Full-stack web development crafting modern, high-converting websites." />
+<title>Website Weaver — Crafting Digital Masterpieces, One Thread at a Time</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #16161f;
+    --card: #1a1a25;
+    --border: #2a2a3a;
+    --accent: #7c5cfc;
+    --accent2: #a78bfa;
+    --accent-glow: rgba(124,92,252,0.3);
+    --text: #f0f0ff;
+    --text2: #a0a0b8;
+    --text3: #6060788;
+    --white: #ffffff;
+    --green: #10b981;
+    --pink: #f472b6;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  a { text-decoration: none; color: inherit; }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--white);
+  }
+
+  .nav-logo img {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text2);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-book {
+    background: var(--accent);
+    color: var(--white);
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: opacity 0.2s;
+  }
+
+  .nav-book:hover { opacity: 0.85; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; left: 50%;
+    transform: translateX(-50%);
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(124,92,252,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(124,92,252,0.15);
+    border: 1px solid rgba(124,92,252,0.4);
+    color: var(--accent2);
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    max-width: 800px;
+  }
+
+  .hero h1 span {
+    background: linear-gradient(135deg, var(--accent), var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    color: var(--text2);
+    font-size: 1.15rem;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 4rem;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--white);
+    padding: 0.8rem 2rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px var(--accent-glow);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.8rem 2rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: var(--accent); background: rgba(124,92,252,0.08); }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .stat { text-align: center; }
+  .stat-num { font-size: 2rem; font-weight: 900; color: var(--white); }
+  .stat-label { font-size: 0.82rem; color: var(--text2); font-weight: 500; }
+
+  /* SECTIONS */
+  section { padding: 6rem 2rem; }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .section-desc {
+    color: var(--text2);
+    max-width: 540px;
+    font-size: 1rem;
+  }
+
+  /* ABOUT */
+  .about { background: var(--bg); }
+
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .about-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+  }
+
+  .tag {
+    background: rgba(124,92,252,0.15);
+    color: var(--accent2);
+    padding: 0.3rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    border: 1px solid rgba(124,92,252,0.3);
+  }
+
+  .about-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .about-stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .about-stat-card .num { font-size: 2rem; font-weight: 900; color: var(--accent2); }
+  .about-stat-card .lbl { font-size: 0.82rem; color: var(--text2); margin-top: 0.25rem; }
+
+  /* SERVICES */
+  .services { background: var(--bg2); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .service-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .service-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+
+  .service-icon {
+    width: 48px; height: 48px;
+    background: rgba(124,92,252,0.15);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    font-size: 1.4rem;
+  }
+
+  .service-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
+  .service-card p { color: var(--text2); font-size: 0.9rem; margin-bottom: 1.25rem; }
+
+  .service-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+  .service-card ul li {
+    color: var(--text2);
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .service-card ul li::before { content: '✓'; color: var(--green); font-weight: 700; }
+
+  /* WORK */
+  .work { background: var(--bg); }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .project-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+
+  .project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .project-body { padding: 1.5rem; }
+  .project-body h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .project-body p { color: var(--text2); font-size: 0.88rem; margin-bottom: 1rem; }
+
+  .project-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+
+  .ptag {
+    background: rgba(124,92,252,0.12);
+    border: 1px solid rgba(124,92,252,0.25);
+    color: var(--accent2);
+    padding: 0.2rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .project-links { display: flex; gap: 0.75rem; }
+
+  .project-link {
+    padding: 0.45rem 1rem;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    border: 1px solid var(--border);
+    color: var(--text2);
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+
+  .project-link:hover { border-color: var(--accent); color: var(--accent2); background: rgba(124,92,252,0.08); }
+
+  .project-link.primary { background: var(--accent); color: var(--white); border-color: var(--accent); }
+  .project-link.primary:hover { opacity: 0.85; }
+
+  /* PRICING */
+  .pricing { background: var(--bg2); }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .pricing-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+
+  .pricing-card.popular {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, rgba(124,92,252,0.1), var(--card));
+  }
+
+  .popular-badge {
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: var(--white);
+    padding: 0.25rem 1rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .pricing-card h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.5rem; }
+  .price { font-size: 2.8rem; font-weight: 900; margin: 1rem 0 0.5rem; color: var(--white); }
+  .price-sub { color: var(--text2); font-size: 0.85rem; margin-bottom: 1.5rem; }
+
+  .pricing-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 2rem; }
+  .pricing-card ul li {
+    font-size: 0.9rem;
+    color: var(--text2);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .pricing-card ul li::before { content: '✓'; color: var(--green); font-weight: 700; }
+
+  .pricing-btn {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border: 1px solid var(--border);
+    color: var(--text);
+    transition: all 0.2s;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .pricing-btn.accent { background: var(--accent); border-color: var(--accent); color: var(--white); }
+  .pricing-btn:hover { border-color: var(--accent); color: var(--accent2); }
+  .pricing-btn.accent:hover { opacity: 0.85; color: var(--white); }
+
+  .pricing-extras {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .extra-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem;
+  }
+
+  .extra-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 1rem; }
+  .extra-card p { color: var(--text2); font-size: 0.85rem; margin-bottom: 0.3rem; }
+
+  /* TECH STACK */
+  .tech { background: var(--bg); padding: 4rem 2rem; }
+
+  .tech-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2.5rem;
+    justify-content: center;
+  }
+
+  .tech-tag {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text2);
+    padding: 0.5rem 1.1rem;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .tech-tag:hover { border-color: var(--accent); color: var(--accent2); }
+
+  /* CONTACT */
+  .contact { background: var(--bg2); }
+
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+  .form-group label { font-size: 0.85rem; font-weight: 600; color: var(--text2); }
+  .form-group label span { color: var(--accent); }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: border-color 0.2s;
+    outline: none;
+    appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--accent); }
+
+  .form-group textarea { resize: vertical; min-height: 130px; }
+
+  .form-submit {
+    background: var(--accent);
+    color: var(--white);
+    border: none;
+    padding: 0.9rem 2rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    font-family: inherit;
+  }
+
+  .form-submit:hover { opacity: 0.85; }
+
+  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+  }
+
+  .contact-icon {
+    width: 44px; height: 44px;
+    background: rgba(124,92,252,0.15);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .contact-item-text h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .contact-item-text p { font-size: 0.85rem; color: var(--text2); }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem 2rem;
+  }
+
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-logo img { width: 32px; height: 32px; border-radius: 8px; }
+  .footer-tagline { color: var(--text2); font-size: 0.85rem; }
+
+  .footer-links { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+  .footer-links a { color: var(--text2); font-size: 0.85rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+  .footer-links span { color: var(--border); }
+
+  .footer-social { display: flex; gap: 0.75rem; }
+
+  .social-btn {
+    width: 36px; height: 36px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text2);
+    transition: border-color 0.2s, color 0.2s;
+    font-size: 0.9rem;
+  }
+
+  .social-btn:hover { border-color: var(--accent); color: var(--accent2); }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    text-align: center;
+    color: var(--text2);
+    font-size: 0.82rem;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .about-inner, .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .hero h1 { font-size: 2.2rem; }
+    .hero-stats { gap: 1.5rem; }
+    .pricing-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="https://websiteweaver.space-z.ai/logo.png" alt="Website Weaver" />
+    Website Weaver
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+  </ul>
+  <a href="#contact" class="nav-book">Book</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Full-stack Web Development</div>
+  <h1>Building Beautiful Websites<br/><span>That Drive Real Results</span></h1>
+  <p class="hero-sub">Your vision meets my expertise. Let's create a website that truly represents you.</p>
+  <div class="hero-btns">
+    <a href="#contact" class="btn-primary">Let's Talk</a>
+    <a href="https://www.instagram.com/website.weaver" target="_blank" class="btn-secondary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      DM on Instagram
+    </a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">50+</div>
+      <div class="stat-label">Projects</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Happy Clients</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">24/7</div>
+      <div class="stat-label">Support</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about">
+  <div class="container">
+    <div class="about-inner">
+      <div>
+        <div class="section-label">About Me</div>
+        <h2 class="section-title">Crafting Digital Masterpieces, One Thread at a Time</h2>
+        <p style="color:var(--text2);margin-bottom:1rem;">I'm a passionate full-stack web developer dedicated to creating beautiful, functional websites that help businesses grow. With expertise in modern web technologies and a keen eye for design, I transform ideas into powerful digital experiences.</p>
+        <p style="color:var(--text2);">Every pixel is crafted with care and purpose. Whether you need a stunning portfolio, a robust e-commerce platform, or a custom web application, I'm here to make it happen.</p>
+        <div class="about-tags">
+          <span class="tag">Quality-Driven</span>
+          <span class="tag">Client-Focused</span>
+          <span class="tag">Results-Oriented</span>
+        </div>
+      </div>
+      <div class="about-stats-grid">
+        <div class="about-stat-card">
+          <div class="num">3+</div>
+          <div class="lbl">Years Experience</div>
+        </div>
+        <div class="about-stat-card">
+          <div class="num">50+</div>
+          <div class="lbl">Projects Completed</div>
+        </div>
+        <div class="about-stat-card">
+          <div class="num">40+</div>
+          <div class="lbl">Happy Clients</div>
+        </div>
+        <div class="about-stat-card">
+          <div class="num">100%</div>
+          <div class="lbl">Satisfaction Rate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="services">
+  <div class="container">
+    <div class="section-label">Services</div>
+    <h2 class="section-title">What I Offer</h2>
+    <p class="section-desc">Comprehensive web development services tailored to your unique needs</p>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon">🖥️</div>
+        <h3>Custom Web Development</h3>
+        <p>Bespoke websites built from scratch using modern frameworks like Next.js, React, and TypeScript for optimal performance.</p>
+        <ul>
+          <li>Responsive Design</li>
+          <li>SEO Optimized</li>
+          <li>Fast Loading</li>
+          <li>Cross-browser Compatible</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🎨</div>
+        <h3>UI/UX Design</h3>
+        <p>Beautiful, intuitive interfaces designed with user experience in mind. From wireframes to pixel-perfect designs.</p>
+        <ul>
+          <li>User Research</li>
+          <li>Wireframing</li>
+          <li>Prototyping</li>
+          <li>Visual Design</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">⚙️</div>
+        <h3>Backend Development</h3>
+        <p>Robust server-side solutions with secure databases, APIs, and authentication systems.</p>
+        <ul>
+          <li>Node.js &amp; Express</li>
+          <li>PostgreSQL/MySQL</li>
+          <li>REST APIs</li>
+          <li>Authentication</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📱</div>
+        <h3>Mobile-Friendly Design</h3>
+        <p>Optimized experiences across all devices, ensuring your website looks perfect on smartphones, tablets, and desktops.</p>
+        <ul>
+          <li>Mobile-First</li>
+          <li>Touch Optimized</li>
+          <li>Progressive Web App</li>
+          <li>Performance Tuned</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🛒</div>
+        <h3>E-commerce Solutions</h3>
+        <p>Full-featured online stores with secure payment processing, inventory management, and smooth checkout experiences.</p>
+        <ul>
+          <li>Payment Integration</li>
+          <li>Cart Systems</li>
+          <li>Product Management</li>
+          <li>Analytics</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📝</div>
+        <h3>CMS Integration</h3>
+        <p>Easy-to-manage content systems so you can update your site without coding.</p>
+        <ul>
+          <li>Content Updates</li>
+          <li>User Management</li>
+          <li>Media Library</li>
+          <li>Analytics</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work" class="work">
+  <div class="container">
+    <div class="section-label">Featured Work</div>
+    <h2 class="section-title">Recent Projects</h2>
+    <div class="work-grid">
+
+      <div class="project-card">
+        <img src="bakery-snapshot.png" alt="Fresh Bakery Website" />
+        <div class="project-body">
+          <h3>Fresh Bakery</h3>
+          <p>A warm, inviting e-commerce site for a local bakery with online ordering and custom cake design features.</p>
+          <div class="project-tags">
+            <span class="ptag">E-commerce</span>
+            <span class="ptag">React</span>
+            <span class="ptag">Next.js</span>
+            <span class="ptag">Tailwind</span>
+          </div>
+          <div class="project-links">
+            <a href="https://freshbakery.netlify.app" target="_blank" class="project-link primary">Live Demo</a>
+            <a href="https://freshbakery.netlify.app" target="_blank" class="project-link">Netlify</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="https://websiteweaver.space-z.ai/nissan-pathfinder-cover.png" alt="Nissan Pathfinder Website" />
+        <div class="project-body">
+          <h3>Nissan Pathfinder</h3>
+          <p>Modern automotive showcase website featuring interactive gallery, specs comparison, and dealer locator.</p>
+          <div class="project-tags">
+            <span class="ptag">Showcase</span>
+            <span class="ptag">Next.js</span>
+            <span class="ptag">Responsive</span>
+            <span class="ptag">Animation</span>
+          </div>
+          <div class="project-links">
+            <a href="https://nissanpathfinder.netlify.app" target="_blank" class="project-link primary">Live Demo</a>
+            <a href="https://nissanpathfinder.netlify.app" target="_blank" class="project-link">Netlify</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="https://websiteweaver.space-z.ai/portfolio-template-cover.png" alt="Portfolio Template Website" />
+        <div class="project-body">
+          <h3>Portfolio Template</h3>
+          <p>A modern, clean portfolio landing page template perfect for showcasing personal work and professional projects with elegant design.</p>
+          <div class="project-tags">
+            <span class="ptag">Portfolio</span>
+            <span class="ptag">Next.js</span>
+            <span class="ptag">Tailwind</span>
+            <span class="ptag">Responsive</span>
+          </div>
+          <div class="project-links">
+            <a href="https://portfolio-landingsite.netlify.app/" target="_blank" class="project-link primary">Live Demo</a>
+            <a href="https://portfolio-landingsite.netlify.app/" target="_blank" class="project-link">Netlify</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="https://websiteweaver.space-z.ai/blog-platform-cover.png" alt="Blog Platform Website" />
+        <div class="project-body">
+          <h3>Blog Platform</h3>
+          <p>A comprehensive blog platform with article listing, clean typography, and content management features for modern writers.</p>
+          <div class="project-tags">
+            <span class="ptag">Blog</span>
+            <span class="ptag">CMS</span>
+            <span class="ptag">Next.js</span>
+            <span class="ptag">Responsive</span>
+          </div>
+          <div class="project-links">
+            <a href="https://theperspectiveblog.netlify.app/" target="_blank" class="project-link primary">Live Demo</a>
+            <a href="https://theperspectiveblog.netlify.app/" target="_blank" class="project-link">Netlify</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="pricing">
+  <div class="container">
+    <div class="section-label">Pricing</div>
+    <h2 class="section-title">Simple, Transparent Pricing</h2>
+    <p class="section-desc">Choose the package that fits your needs. All plans include responsive design and SEO optimization.</p>
+
+    <div class="pricing-grid">
+
+      <div class="pricing-card">
+        <h3>Starter</h3>
+        <div class="price">$300</div>
+        <div class="price-sub">Perfect for personal projects</div>
+        <ul>
+          <li>1-page website</li>
+          <li>Responsive design</li>
+          <li>SEO optimized</li>
+          <li>Contact form</li>
+          <li>1 revision</li>
+        </ul>
+        <a href="#contact" class="pricing-btn">Get Started</a>
+      </div>
+
+      <div class="pricing-card popular">
+        <div class="popular-badge">Most Popular</div>
+        <h3>Professional</h3>
+        <div class="price">$750</div>
+        <div class="price-sub">Great for small businesses</div>
+        <ul>
+          <li>Up to 5 pages</li>
+          <li>Advanced responsive design</li>
+          <li>SEO optimized</li>
+          <li>Custom animations</li>
+          <li>3 revisions</li>
+        </ul>
+        <a href="#contact" class="pricing-btn accent">Get Started</a>
+      </div>
+
+      <div class="pricing-card">
+        <h3>Enterprise</h3>
+        <div class="price">$1,500+</div>
+        <div class="price-sub">For complex projects</div>
+        <ul>
+          <li>Unlimited pages</li>
+          <li>Custom features</li>
+          <li>E-commerce integration</li>
+          <li>CMS integration</li>
+          <li>Unlimited revisions</li>
+        </ul>
+        <a href="#contact" class="pricing-btn">Get Started</a>
+      </div>
+
+    </div>
+
+    <div class="pricing-extras">
+      <div class="extra-card">
+        <h4>Starter Plan</h4>
+        <p>Domain: $10–$15/year</p>
+        <p>Hosting: $3–$10/month</p>
+      </div>
+      <div class="extra-card">
+        <h4>Professional Plan</h4>
+        <p>Domain: $12–$20/year</p>
+        <p>Hosting: $8–$18/month</p>
+      </div>
+      <div class="extra-card">
+        <h4>Enterprise Plan</h4>
+        <p>Domain: $15–$25/year</p>
+        <p>Hosting: $15–$25/month</p>
+      </div>
+      <div class="extra-card">
+        <h4>Maintenance &amp; Support</h4>
+        <p>Keep your website running smoothly with ongoing support.</p>
+        <p style="margin-top:0.5rem;">Updates: $50–$150/month</p>
+        <p>24/7 email support included</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="tech">
+  <div class="container" style="text-align:center;">
+    <div class="section-label">Tech Stack</div>
+    <h2 class="section-title">Tools &amp; Technologies</h2>
+    <div class="tech-grid">
+      <span class="tech-tag">HTML/CSS</span>
+      <span class="tech-tag">TypeScript</span>
+      <span class="tech-tag">React</span>
+      <span class="tech-tag">Next.js</span>
+      <span class="tech-tag">Node.js</span>
+      <span class="tech-tag">PostgreSQL</span>
+      <span class="tech-tag">Prisma</span>
+      <span class="tech-tag">Tailwind CSS</span>
+      <span class="tech-tag">Hostinger</span>
+      <span class="tech-tag">Netlify</span>
+      <span class="tech-tag">GitHub</span>
+      <span class="tech-tag">GraphQL</span>
+      <span class="tech-tag">REST API</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title">Let's Work Together</h2>
+    <p class="section-desc" style="margin-bottom:3rem;">Ready to start your project? Fill out form below or reach out directly.</p>
+    <div class="contact-inner">
+
+      <form class="contact-form" onsubmit="return false;">
+        <div class="form-group">
+          <label>Name <span>*</span></label>
+          <input type="text" placeholder="Your name" />
+        </div>
+        <div class="form-group">
+          <label>Email <span>*</span></label>
+          <input type="email" placeholder="your@email.com" />
+        </div>
+        <div class="form-group">
+          <label>Service Type</label>
+          <select>
+            <option value="">* Select a service</option>
+            <option>Custom Web Development</option>
+            <option>UI/UX Design</option>
+            <option>Portfolio Website</option>
+            <option>Backend Development</option>
+            <option>Mobile-Friendly Design</option>
+            <option>E-commerce Solutions</option>
+            <option>CMS Integration</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Budget</label>
+          <select>
+            <option value="">* Select your budget</option>
+            <option>$300 (Starter - 1 page)</option>
+            <option>$750 (Professional - up to 5 pages)</option>
+            <option>$1,500+ (Enterprise - unlimited pages)</option>
+            <option>Custom / Not sure yet</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message <span>*</span></label>
+          <textarea placeholder="Tell me about your project..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message</button>
+      </form>
+
+      <div class="contact-info">
+        <a href="https://www.instagram.com/website.weaver" target="_blank" class="contact-item" style="text-decoration:none;">
+          <div class="contact-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <div class="contact-item-text">
+            <h4>DM on Instagram</h4>
+            <p>@websiteweaver0</p>
+          </div>
+        </a>
+        <a href="mailto:websiteweaver0@gmail.com" class="contact-item" style="text-decoration:none;">
+          <div class="contact-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          </div>
+          <div class="contact-item-text">
+            <h4>websiteweaver0@gmail.com</h4>
+            <p>Response within 24 hours</p>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">
+          <img src="https://websiteweaver.space-z.ai/logo.png" alt="Website Weaver" />
+          Website Weaver
+        </div>
+        <div class="footer-tagline">Crafting Digital Masterpieces, One Thread at a Time</div>
+        <div class="footer-social" style="margin-top:1rem;">
+          <a href="https://www.instagram.com/websiteweaver0" target="_blank" class="social-btn" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="mailto:websiteweaver0@gmail.com" class="social-btn" aria-label="Email">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <span>|</span>
+        <a href="#services">Services</a>
+        <span>|</span>
+        <a href="#work">Work</a>
+        <span>|</span>
+        <a href="#pricing">Pricing</a>
+        <span>|</span>
+        <a href="#contact">Book</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Website Weaver. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
