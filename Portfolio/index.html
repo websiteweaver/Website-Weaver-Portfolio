@@ -1039,17 +1039,17 @@
         </div>
         <div class="form-group">
           <label>Budget <span>*</span> </label>
-          <select>
-            <option value="" required>Select your budget</option>
-            <option>$300 (Starter - 1 page)</option>
-            <option>$750 (Professional - up to 5 pages)</option>
-            <option>$1,500+ (Enterprise - unlimited pages)</option>
-            <option>Custom / Not sure yet</option>
+          <select name="budget" required>
+            <option value="" disabled selected>Select your budget</option>
+            <option value="300">$300 (Starter - 1 page)</option>
+            <option value="750">$750 (Professional - up to 5 pages)</option>
+            <option value="1500">$1,500+ (Enterprise - unlimited pages)</option>
+            <option value="custom">Custom / Not sure yet</option>
           </select>
         </div>
         <div class="form-group">
           <label>Message <span>*</span></label>
-          <textarea placeholder="Tell me about your project..."></textarea>
+          <textarea name="message" placeholder="Tell me about your project..." required></textarea>
         </div>
         <button type="submit" class="form-submit">Send Message</button>
       </form>
