@@ -1118,43 +1118,30 @@
   </div>
 </footer>
  <script>
-const contactForm = document.getElementById('contact-form');
-const formStatus = document.getElementById('form-status');
-const submitBtn = document.getElementById('form-submit-btn');
+  const contactForm = document.getElementById('contact-form');
+  const formStatus = document.getElementById('form-status');
 
-contactForm.addEventListener('submit', async function(event) {
-    event.preventDefault(); // Stop the page from reloading
+  contactForm.addEventListener('submit', async function(event) {
+    event.preventDefault(); // THIS LINE KILLS THE REDIRECT
     
     const formData = new FormData(contactForm);
-    submitBtn.disabled = true;
-    submitBtn.innerText = "Sending...";
 
-    try {
-        const response = await fetch(contactForm.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
-            }
-        });
+    const response = await fetch(contactForm.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json' // THIS TELLS FORMSPREE NOT TO REDIRECT
+      }
+    });
 
-        if (response.ok) {
-            // SUCCESS: Show your custom message
-            contactForm.style.display = 'none'; // Hide the form
-            formStatus.style.display = 'block';
-            formStatus.innerHTML = "Sent your message! Please wait for a response within 24-48 hours.";
-        } else {
-            // ERROR: Something went wrong with the service
-            throw new Error('Form submission failed');
-        }
-    } catch (error) {
-        formStatus.style.display = 'block';
-        formStatus.style.color = 'red';
-        formStatus.innerHTML = "Oops! There was a problem. Please try again or DM on Instagram.";
-        submitBtn.disabled = false;
-        submitBtn.innerText = "Send Message";
+    if (response.ok) {
+      contactForm.style.display = 'none';
+      formStatus.style.display = 'block';
+      formStatus.innerHTML = "Sent your message! Please wait for a response within 24-48 hours.";
+    } else {
+      formStatus.innerHTML = "Oops! Something went wrong. Try again or DM me.";
     }
-});
+  });
 </script>
 </body>
 </html>
