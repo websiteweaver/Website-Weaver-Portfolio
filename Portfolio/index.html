@@ -1014,7 +1014,7 @@
     <p class="section-desc" style="margin-bottom:3rem;">Ready to start your project? Fill out form below or reach out directly.</p>
     <div class="contact-inner">
 
-      <form class="contact-form" onsubmit="return false;">
+      <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
         <div class="form-group">
           <label>Name <span>*</span></label>
           <input type="text" placeholder="Your name" />
@@ -1053,7 +1053,9 @@
         </div>
         <button type="submit" class="form-submit">Send Message</button>
       </form>
-
+     
+     <div id="form-status" style="display:none; margin-top: 20px; color: #00bfa5; font-weight: bold;"></div>
+     
       <div class="contact-info">
         <a href="https://www.instagram.com/website.weaver" target="_blank" class="contact-item" style="text-decoration:none;">
           <div class="contact-icon">
@@ -1115,6 +1117,43 @@
     </div>
   </div>
 </footer>
+const contactForm = document.getElementById('contact-form');
+const formStatus = document.getElementById('form-status');
+const submitBtn = document.getElementById('form-submit-btn');
 
+contactForm.addEventListener('submit', async function(event) {
+    event.preventDefault(); // Stop the page from reloading
+    
+    const formData = new FormData(contactForm);
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Sending...";
+
+    try {
+        const response = await fetch(contactForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            // SUCCESS: Show your custom message
+            contactForm.style.display = 'none'; // Hide the form
+            formStatus.style.display = 'block';
+            formStatus.innerHTML = "Sent your message! Please wait for a response within 24-48 hours.";
+        } else {
+            // ERROR: Something went wrong with the service
+            throw new Error('Form submission failed');
+        }
+    } catch (error) {
+        formStatus.style.display = 'block';
+        formStatus.style.color = 'red';
+        formStatus.innerHTML = "Oops! There was a problem. Please try again or DM on Instagram.";
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Send Message";
+    }
+});
+</script>
 </body>
 </html>
