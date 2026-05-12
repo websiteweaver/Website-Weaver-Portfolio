@@ -1021,12 +1021,12 @@
         </div>
         <div class="form-group">
           <label>Email <span>*</span></label>
-          <input type="email" placeholder="your@email.com" />
+          <input type="email" name="email" placeholder="your@email.com" required/>
         </div>
         <div class="form-group">
           <label>Service Type</label>
           <select>
-            <option value="">* Select a service</option>
+            <option value="" required>Select a service</option>
             <option>Custom Web Development</option>
             <option>UI/UX Design</option>
             <option>Portfolio Website</option>
@@ -1040,7 +1040,7 @@
         <div class="form-group">
           <label>Budget</label>
           <select>
-            <option value="">* Select your budget</option>
+            <option value="" required>Select your budget</option>
             <option>$300 (Starter - 1 page)</option>
             <option>$750 (Professional - up to 5 pages)</option>
             <option>$1,500+ (Enterprise - unlimited pages)</option>
