@@ -1014,10 +1014,10 @@
     <p class="section-desc" style="margin-bottom:3rem;">Ready to start your project? Fill out form below or reach out directly.</p>
     <div class="contact-inner">
 
-      <form class="contact-form" action="https://formspree.io/f/mbdwwqzz" method="POST" onsubmit="return false;">
+      <form id="contact-form" class="contact-form" action="https://formspree.io/f/mbdwwqzz" method="POST" >
         <div class="form-group">
           <label>Name <span>*</span></label>
-          <input type="text" placeholder="Your name" />
+          <input type="text" name="name" placeholder="Your name" required />
         </div>
         <div class="form-group">
           <label>Email <span>*</span></label>
@@ -1025,8 +1025,8 @@
         </div>
         <div class="form-group">
           <label>Service Type <span>*</span> </label>
-          <select>
-            <option value="" required>Select a service</option>
+          <select name="service" required>
+            <option value="" disabled selected>Select a service</option>
             <option value="Custom Web Development">Custom Web Development</option>
             <option value="UI/UX Design">UI/UX Design</option>
             <option value="Portfolio Website">Portfolio Website</option>
@@ -1118,14 +1118,17 @@
   </div>
 </footer>
  <script>
+  document.addEventListener('DOMContentLoaded', () => {
   const contactForm = document.getElementById('contact-form');
   const formStatus = document.getElementById('form-status');
 
+   if (contactForm) {
   contactForm.addEventListener('submit', async function(event) {
     event.preventDefault(); // THIS LINE KILLS THE REDIRECT
     
     const formData = new FormData(contactForm);
 
+   try {
     const response = await fetch(contactForm.action, {
       method: 'POST',
       body: formData,
@@ -1138,8 +1141,20 @@
       contactForm.style.display = 'none';
       formStatus.style.display = 'block';
       formStatus.innerHTML = "Sent your message! Please wait for a response within 24-48 hours.";
+     contactForm.reset();
     } else {
-      formStatus.innerHTML = "Oops! Something went wrong. Try again or DM me.";
+      const data = await response.json();
+            formStatus.style.display = 'block';
+            formStatus.style.color = '#f472b6';
+            formStatus.innerHTML = data.errors ? data.errors.map(error => error.message).join(", ") : "Oops! Something went wrong.";
+    }
+   }
+   catch (error) {
+          formStatus.style.display = 'block';
+          formStatus.style.color = '#f472b6';
+          formStatus.innerHTML = "Connection error. Please try again later.";
+        }
+      });
     }
   });
 </script>
