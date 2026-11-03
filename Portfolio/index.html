@@ -1,1190 +1,554 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Full-stack web development by Elissa A. Crafting modern, high-converting websites with AI-assisted development. Static sites, portfolios, landing pages, and business websites." />
-<meta name="keywords" content="Website Weaver,web development,Elissa A,web design,portfolio websites,landing pages,business websites,Netlify,AI-assisted development" />
-<meta name="author" content="Elissa A." />
-<meta property="og:title" content="Website Weaver — Crafting Digital Masterpieces, One Thread at a Time" />
-<meta property="og:description" content="Full-stack web development crafting modern, high-converting websites." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://website-weaver.dev" />
-<meta property="og:site_name" content="Website Weaver" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Website Weaver — Crafting Digital Masterpieces" />
-<meta name="twitter:description" content="Full-stack web development crafting modern, high-converting websites." />
-<title>Website Weaver — Crafting Digital Masterpieces, One Thread at a Time</title>
-<link rel="icon" href="https://websiteweaver.space-z.ai/logo.png" type="image/png">
-<link rel="apple-touch-icon" href="https://websiteweaver.space-z.ai/logo.png">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="icon" href="favicon.png" type="image/png">
+<title>Website Weaver</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Websites, 3D websites and mobile apps for cafés, clinics, shops and local brands in Lebanon and the GCC.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --bg: #0a0a0f;
-    --bg2: #111118;
-    --bg3: #16161f;
-    --card: #1a1a25;
-    --border: #2a2a3a;
-    --accent: #7c5cfc;
-    --accent2: #a78bfa;
-    --accent-glow: rgba(124,92,252,0.3);
-    --text: #f0f0ff;
-    --text2: #a0a0b8;
-    --text3: #6060788;
-    --white: #ffffff;
-    --green: #10b981;
-    --pink: #f472b6;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  a { text-decoration: none; color: inherit; }
-
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 2rem;
-    background: rgba(10,10,15,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: var(--white);
-  }
-
-  .nav-logo img {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    color: var(--text2);
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--white); }
-
-  .nav-book {
-    background: var(--accent);
-    color: var(--white);
-    padding: 0.5rem 1.2rem;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: opacity 0.2s;
-  }
-
-  .nav-book:hover { opacity: 0.85; }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 8rem 2rem 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -200px; left: 50%;
-    transform: translateX(-50%);
-    width: 800px; height: 800px;
-    background: radial-gradient(circle, rgba(124,92,252,0.15) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(124,92,252,0.15);
-    border: 1px solid rgba(124,92,252,0.4);
-    color: var(--accent2);
-    padding: 0.4rem 1rem;
-    border-radius: 999px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    margin-bottom: 2rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
-  .hero h1 {
-    font-size: clamp(2.4rem, 6vw, 4.5rem);
-    font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-    max-width: 800px;
-  }
-
-  .hero h1 span {
-    background: linear-gradient(135deg, var(--accent), var(--pink));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero-sub {
-    color: var(--text2);
-    font-size: 1.15rem;
-    max-width: 480px;
-    margin-bottom: 2.5rem;
-  }
-
-  .hero-btns {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 4rem;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: var(--white);
-    padding: 0.8rem 2rem;
-    border-radius: 10px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px var(--accent-glow);
-  }
-
-  .btn-secondary {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 0.8rem 2rem;
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: border-color 0.2s, background 0.2s;
-  }
-
-  .btn-secondary:hover { border-color: var(--accent); background: rgba(124,92,252,0.08); }
-
-  .hero-stats {
-    display: flex;
-    gap: 3rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .stat { text-align: center; }
-  .stat-num { font-size: 2rem; font-weight: 900; color: var(--white); }
-  .stat-label { font-size: 0.82rem; color: var(--text2); font-weight: 500; }
-
-  /* SECTIONS */
-  section { padding: 6rem 2rem; }
-
-  .container { max-width: 1100px; margin: 0 auto; }
-
-  .section-label {
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent2);
-    margin-bottom: 0.75rem;
-  }
-
-  .section-title {
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 800;
-    margin-bottom: 1rem;
-    line-height: 1.2;
-  }
-
-  .section-desc {
-    color: var(--text2);
-    max-width: 540px;
-    font-size: 1rem;
-  }
-
-  /* ABOUT */
-  .about { background: var(--bg); }
-
-  .about-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-  }
-
-  .about-tags {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin: 1.5rem 0;
-  }
-
-  .tag {
-    background: rgba(124,92,252,0.15);
-    color: var(--accent2);
-    padding: 0.3rem 0.9rem;
-    border-radius: 999px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    border: 1px solid rgba(124,92,252,0.3);
-  }
-
-  .about-stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
-
-  .about-stat-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 1.5rem;
-    text-align: center;
-  }
-
-  .about-stat-card .num { font-size: 2rem; font-weight: 900; color: var(--accent2); }
-  .about-stat-card .lbl { font-size: 0.82rem; color: var(--text2); margin-top: 0.25rem; }
-
-  /* SERVICES */
-  .services { background: var(--bg2); }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
-
-  .service-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 2rem;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-
-  .service-card:hover { border-color: var(--accent); transform: translateY(-4px); }
-
-  .service-icon {
-    width: 48px; height: 48px;
-    background: rgba(124,92,252,0.15);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.25rem;
-    font-size: 1.4rem;
-  }
-
-  .service-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
-  .service-card p { color: var(--text2); font-size: 0.9rem; margin-bottom: 1.25rem; }
-
-  .service-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
-  .service-card ul li {
-    color: var(--text2);
-    font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .service-card ul li::before { content: '✓'; color: var(--green); font-weight: 700; }
-
-  /* WORK */
-  .work { background: var(--bg); }
-
-  .work-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-  }
-
-  .project-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-
-  .project-card:hover { border-color: var(--accent); transform: translateY(-4px); }
-
-  .project-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    display: block;
-  }
-
-  .project-body { padding: 1.5rem; }
-  .project-body h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
-  .project-body p { color: var(--text2); font-size: 0.88rem; margin-bottom: 1rem; }
-
-  .project-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
-
-  .ptag {
-    background: rgba(124,92,252,0.12);
-    border: 1px solid rgba(124,92,252,0.25);
-    color: var(--accent2);
-    padding: 0.2rem 0.7rem;
-    border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: 600;
-  }
-
-  .project-links { display: flex; gap: 0.75rem; }
-
-  .project-link {
-    padding: 0.45rem 1rem;
-    border-radius: 8px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    border: 1px solid var(--border);
-    color: var(--text2);
-    transition: border-color 0.2s, color 0.2s, background 0.2s;
-  }
-
-  .project-link:hover { border-color: var(--accent); color: var(--accent2); background: rgba(124,92,252,0.08); }
-
-  .project-link.primary { background: var(--accent); color: var(--white); border-color: var(--accent); }
-  .project-link.primary:hover { opacity: 0.85; }
-
-  /* PRICING */
-  .pricing { background: var(--bg2); }
-
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-    gap: 1.5rem;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-  }
-
-  .pricing-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 2.5rem 2rem;
-    position: relative;
-    transition: border-color 0.2s;
-  }
-
-  .pricing-card.popular {
-    border-color: var(--accent);
-    background: linear-gradient(135deg, rgba(124,92,252,0.1), var(--card));
-  }
-
-  .popular-badge {
-    position: absolute;
-    top: -13px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--accent);
-    color: var(--white);
-    padding: 0.25rem 1rem;
-    border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    white-space: nowrap;
-  }
-
-  .pricing-card h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.5rem; }
-  .price { font-size: 2.8rem; font-weight: 900; margin: 1rem 0 0.5rem; color: var(--white); }
-  .price-sub { color: var(--text2); font-size: 0.85rem; margin-bottom: 1.5rem; }
-
-  .pricing-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 2rem; }
-  .pricing-card ul li {
-    font-size: 0.9rem;
-    color: var(--text2);
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-  .pricing-card ul li::before { content: '✓'; color: var(--green); font-weight: 700; }
-
-  .pricing-btn {
-    display: block;
-    width: 100%;
-    padding: 0.8rem;
-    border-radius: 10px;
-    text-align: center;
-    font-weight: 700;
-    font-size: 0.9rem;
-    border: 1px solid var(--border);
-    color: var(--text);
-    transition: all 0.2s;
-    background: transparent;
-    cursor: pointer;
-  }
-
-  .pricing-btn.accent { background: var(--accent); border-color: var(--accent); color: var(--white); }
-  .pricing-btn:hover { border-color: var(--accent); color: var(--accent2); }
-  .pricing-btn.accent:hover { opacity: 0.85; color: var(--white); }
-
-  .pricing-extras {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-  }
-
-  .extra-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 1.5rem;
-  }
-
-  .extra-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 1rem; }
-  .extra-card p { color: var(--text2); font-size: 0.85rem; margin-bottom: 0.3rem; }
-
-  /* TECH STACK */
-  .tech { background: var(--bg); padding: 4rem 2rem; }
-
-  .tech-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 2.5rem;
-    justify-content: center;
-  }
-
-  .tech-tag {
-    background: var(--card);
-    border: 1px solid var(--border);
-    color: var(--text2);
-    padding: 0.5rem 1.1rem;
-    border-radius: 10px;
-    font-size: 0.88rem;
-    font-weight: 600;
-    transition: border-color 0.2s, color 0.2s;
-  }
-
-  .tech-tag:hover { border-color: var(--accent); color: var(--accent2); }
-
-  /* CONTACT */
-  .contact { background: var(--bg2); }
-
-  .contact-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-
-  .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
-
-  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-
-  .form-group label { font-size: 0.85rem; font-weight: 600; color: var(--text2); }
-  .form-group label span { color: var(--accent); }
-
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 0.75rem 1rem;
-    color: var(--text);
-    font-family: inherit;
-    font-size: 0.9rem;
-    transition: border-color 0.2s;
-    outline: none;
-    appearance: none;
-  }
-
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus { border-color: var(--accent); }
-
-  .form-group textarea { resize: vertical; min-height: 130px; }
-
-  .form-submit {
-    background: var(--accent);
-    color: var(--white);
-    border: none;
-    padding: 0.9rem 2rem;
-    border-radius: 10px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: opacity 0.2s;
-    font-family: inherit;
-  }
-
-  .form-submit:hover { opacity: 0.85; }
-
-  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
-
-  .contact-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.25rem;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-  }
-
-  .contact-icon {
-    width: 44px; height: 44px;
-    background: rgba(124,92,252,0.15);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    flex-shrink: 0;
-  }
-
-  .contact-item-text h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.2rem; }
-  .contact-item-text p { font-size: 0.85rem; color: var(--text2); }
-
-  /* FOOTER */
-  footer {
-    background: var(--bg);
-    border-top: 1px solid var(--border);
-    padding: 3rem 2rem 2rem;
-  }
-
-  .footer-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .footer-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-  }
-
-  .footer-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-weight: 700;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .footer-logo img { width: 32px; height: 32px; border-radius: 8px; }
-  .footer-tagline { color: var(--text2); font-size: 0.85rem; }
-
-  .footer-links { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
-  .footer-links a { color: var(--text2); font-size: 0.85rem; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--white); }
-  .footer-links span { color: var(--border); }
-
-  .footer-social { display: flex; gap: 0.75rem; }
-
-  .social-btn {
-    width: 36px; height: 36px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text2);
-    transition: border-color 0.2s, color 0.2s;
-    font-size: 0.9rem;
-  }
-
-  .social-btn:hover { border-color: var(--accent); color: var(--accent2); }
-
-  .footer-bottom {
-    border-top: 1px solid var(--border);
-    padding-top: 1.5rem;
-    text-align: center;
-    color: var(--text2);
-    font-size: 0.82rem;
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .about-inner, .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
-    .hero h1 { font-size: 2.2rem; }
-    .hero-stats { gap: 1.5rem; }
-    .pricing-grid { grid-template-columns: 1fr; }
-  }
+/* Layout: a fixed WebGL stage (woven web + laptop + phone) behind scrolling chapters; text alternates sides so the 3D object always has room. */
+:root{
+  --night:#070816; --navy:#0E1630; --ink:#F4F1FF; --mist:#A9A6C9;
+  --violet:#7B2FF7; --lilac:#C9B6FF; --pink:#FF3D8B; --cyan:#00D4FF;
+  --glass:rgba(14,22,48,.55); --line:rgba(201,182,255,.18);
+  --display:"Anton","Impact","Arial Narrow",sans-serif;
+  --body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--night);color:var(--ink);font:400 17px/1.6 var(--body);overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--night)}
+#stage{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
+.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 50% 40%,transparent 40%,rgba(7,8,22,.75) 100%)}
+main,header,footer{position:relative;z-index:2}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--pink);outline-offset:3px;border-radius:6px}
+
+/* nav */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(7,8,22,.55);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:800 14px/1 var(--body);letter-spacing:.18em;text-transform:uppercase}
+.brand img{width:40px;height:auto}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-size:14px}
+.nav ul a{text-decoration:none;color:var(--mist)}
+.nav ul a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:999px;font:700 15px/1 var(--body);text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-hot{background:linear-gradient(100deg,var(--violet),var(--pink));color:#fff;box-shadow:0 10px 34px -10px var(--pink)}
+.btn-ghost{border-color:var(--line);color:var(--ink);background:rgba(255,255,255,.04)}
+.nav .btn{padding:10px 16px;font-size:14px}
+
+/* type */
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--lilac)}
+h1,h2{font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:.92;margin:0;letter-spacing:.005em;text-wrap:balance}
+h1{font-size:clamp(56px,10.5vw,148px)}
+h2{font-size:clamp(42px,6.4vw,92px)}
+h3{font:800 22px/1.2 var(--body);margin:0}
+.grad{background:linear-gradient(95deg,var(--lilac),var(--pink) 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:clamp(17px,1.5vw,20px);color:var(--mist);max-width:34ch;margin:0}
+
+/* chapters */
+.chapter{min-height:100vh;display:flex;align-items:center;padding-block:120px}
+.chapter .panel{max-width:520px;display:grid;gap:22px}
+.chapter.right .wrap{display:flex;justify-content:flex-end}
+.chapter .wrap{width:100%}
+.hero{min-height:92vh;padding-top:60px}
+.hero .panel{max-width:640px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;font:500 12px/1 var(--mono);color:var(--mist)}
+.chips span{padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03)}
+.scroll-hint{font:500 11px/1 var(--mono);letter-spacing:.2em;color:var(--mist);text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.scroll-hint i{display:block;width:1px;height:38px;background:linear-gradient(var(--pink),transparent);animation:drip 1.8s infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* marquee */
+.marquee{position:relative;z-index:2;overflow:hidden;border-block:1px solid var(--line);background:rgba(7,8,22,.6);padding-block:16px}
+.marquee div{display:flex;gap:42px;width:max-content;animation:slide 28s linear infinite;font:400 clamp(28px,4vw,48px)/1 var(--display);text-transform:uppercase;white-space:nowrap}
+.marquee b{font-weight:400;color:transparent;-webkit-text-stroke:1px var(--lilac)}
+.marquee em{font-style:normal;color:var(--pink)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* services */
+.svc{display:grid;gap:14px}
+.svc article{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;padding:18px 20px;border:1px solid var(--line);border-radius:18px;background:var(--glass);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.svc .ic{grid-row:span 2;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(123,47,247,.35),rgba(255,61,139,.25))}
+.svc .ic svg{width:22px;height:22px;stroke:var(--ink);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.svc p{margin:0;color:var(--mist);font-size:15px;min-width:0}
+
+/* work */
+.work-card{display:grid;gap:18px}
+.cover{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/10;max-width:100%;background:var(--navy);box-shadow:0 30px 60px -30px rgba(123,47,247,.6)}
+.cover img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.tag{position:absolute;top:12px;left:12px;font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;padding:7px 10px;border-radius:999px;background:rgba(7,8,22,.8);color:var(--lilac);border:1px solid var(--line)}
+.meta{font:500 12px/1.4 var(--mono);color:var(--mist);letter-spacing:.06em}
+.work-card p{margin:0;color:var(--mist)}
+.count{font:400 120px/0.8 var(--display);color:transparent;-webkit-text-stroke:1px rgba(201,182,255,.35)}
+
+
+/* more work */
+.more{padding-block:110px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.mini{display:grid;gap:10px;text-decoration:none;align-content:start}
+.mini .cover{transition:transform .3s,box-shadow .3s}
+.mini:hover .cover{transform:translateY(-4px) rotateX(4deg);box-shadow:0 30px 60px -24px var(--pink)}
+.mini h3{font-size:17px}
+@media (max-width:1000px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.grid{grid-template-columns:1fr}}
+
+/* apps */
+.app-list{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.app-list li{display:flex;gap:14px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.app-list b{font:400 24px/1 var(--display);text-transform:uppercase;min-width:6.5ch;color:var(--lilac)}
+.app-list span{color:var(--mist);min-width:0}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:40px;counter-reset:s}
+.steps div{padding:22px;border-top:2px solid var(--violet);background:var(--glass);border-radius:0 0 16px 16px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.steps div::before{counter-increment:s;content:"Step " counter(s);font:500 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--pink);display:block;margin-bottom:12px}
+.steps p{margin:8px 0 0;color:var(--mist);font-size:15px}
+
+/* pricing */
+.pricing{padding-block:120px}
+.tabs{display:inline-flex;gap:4px;padding:4px;border:1px solid var(--line);border-radius:999px;background:rgba(7,8,22,.6);margin:28px 0}
+.tabs button{all:unset;cursor:pointer;padding:10px 18px;border-radius:999px;font:700 14px/1 var(--body);color:var(--mist)}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--night)}
+.tabs button:focus-visible{outline:2px solid var(--pink)}
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.plan{position:relative;padding:28px 24px;border:1px solid var(--line);border-radius:20px;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:grid;gap:14px;align-content:start}
+.plan.pop{border-color:rgba(255,61,139,.6);box-shadow:0 0 0 1px rgba(255,61,139,.25),0 30px 70px -30px var(--pink)}
+.plan .badge{position:absolute;top:-12px;right:20px;font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;padding:7px 10px;border-radius:999px;background:var(--pink);color:#fff}
+.plan .name{font:500 12px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--lilac)}
+.plan .price{font:400 64px/1 var(--display);font-variant-numeric:tabular-nums}
+.plan ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;color:var(--mist);font-size:15px}
+.plan li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--pink);margin-right:10px;vertical-align:middle}
+.fine{margin-top:22px;color:var(--mist);font-size:15px}
+
+/* faq */
+.faq{display:grid;gap:10px;max-width:760px}
+.faq details{border:1px solid var(--line);border-radius:14px;background:var(--glass);padding:16px 20px}
+.faq summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::after{content:"+";color:var(--pink);font-size:22px;line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq p{margin:10px 0 0;color:var(--mist)}
+
+/* contact */
+.contact{padding-block:140px 80px;text-align:center}
+.contact h2{font-size:clamp(48px,8vw,120px)}
+.contact .lead{margin:18px auto 30px}
+form{display:grid;gap:10px;max-width:520px;margin:30px auto 0;text-align:left}
+label{font:500 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mist)}
+input,select{width:100%;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:rgba(7,8,22,.7);color:var(--ink);font:500 16px var(--body)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form-row>div,form>div{display:grid;gap:6px;min-width:0}
+#formNote{min-height:1.4em;color:var(--lilac);font-size:14px;margin:4px 0 0}
+footer{border-top:1px solid var(--line);padding-block:28px;color:var(--mist);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+
+.reveal{transition:opacity .8s,transform .8s}
+.reveal.pre{opacity:.001;transform:translateY(30px)}
+
+@media (max-width:860px){
+  .nav ul{display:none}
+  .chapter{min-height:auto;padding-block:58vh 70px;align-items:flex-end}
+  .hero{padding-block:46vh 60px}
+  .chapter.right .wrap{justify-content:flex-start}
+  .chapter .panel{max-width:none;padding:22px;border-radius:20px;background:rgba(7,8,22,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--line)}
+  .hero .panel{background:transparent;border:0;padding:0;backdrop-filter:none;-webkit-backdrop-filter:none}
+  .steps,.plans{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .count{font-size:80px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .marquee div,.scroll-hint i{animation:none}
+  .reveal,.reveal.pre{opacity:1;transform:none;transition:none}
+}
 </style>
+
 </head>
 <body>
+<canvas id="stage" aria-hidden="true"></canvas>
+<div class="vignette"></div>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">
-    <img src="https://websiteweaver.space-z.ai/logo.png" alt="Website Weaver" />
-    Website Weaver
-  </a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-  </ul>
-  <a href="#contact" class="nav-book">Book</a>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-badge">Full-stack Web Development</div>
-  <h1>Building Beautiful Websites<br/><span>That Drive Real Results</span></h1>
-  <p class="hero-sub">Your vision meets my expertise. Let's create a website that truly represents you.</p>
-  <div class="hero-btns">
-    <a href="#contact" class="btn-primary">Let's Talk</a>
-    <a href="https://www.instagram.com/website.weaver" target="_blank" class="btn-secondary">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-      DM on Instagram
-    </a>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top"><img src="mark.png" alt="">Website Weaver</a>
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#apps">Apps</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+    </ul>
+    <a class="btn btn-hot" href="#contact">Free mockup</a>
   </div>
-  <div class="hero-stats">
-    <div class="stat">
-      <div class="stat-num">50+</div>
-      <div class="stat-label">Projects</div>
+</header>
+
+<main id="top">
+  <section class="chapter hero" data-stage="0">
+    <div class="wrap"><div class="panel">
+      <span class="eyebrow">Websites · Apps · 3D — Lebanon &amp; GCC</span>
+      <h1>Websites &amp; apps that bring you <span class="grad">customers.</span></h1>
+      <p class="lead">I design and build fast websites, 3D scroll websites and mobile apps for cafés, clinics, shops and local brands.</p>
+      <div class="cta-row">
+        <a class="btn btn-hot" href="#contact">Get a free 1-min mockup</a>
+        <a class="btn btn-ghost" href="#pricing">See packages</a>
+      </div>
+      <div class="chips"><span>From $300</span><span>Pay in installments</span><span>English &amp; عربي</span></div>
+      <div class="scroll-hint"><i></i>Scroll to open the laptop</div>
+    </div></div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div>
+    <span>Websites</span><b>Apps</b><em>3D</em><span>Booking</span><b>Ordering</b><em>Loyalty</em><span>Websites</span><b>Apps</b><em>3D</em><span>Booking</span><b>Ordering</b><em>Loyalty</em>
+  </div></div>
+
+  <section class="chapter" id="services" data-stage="1">
+    <div class="wrap"><div class="panel reveal">
+      <span class="eyebrow">What I build</span>
+      <h2>One studio. <span class="grad">Every screen.</span></h2>
+      <div class="svc">
+        <article><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M2 20h20"/></svg></div><h3>Websites</h3><p>Clean, fast sites that show up on Google and turn searches into visits, calls and orders. One page up to full e-commerce.</p></article>
+        <article><div class="ic"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg></div><h3>Mobile apps</h3><p>iPhone and Android apps for bookings, orders and loyalty, so your regulars come back without you chasing them.</p></article>
+        <article><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 12l9-5M12 12v10M12 12L3 7"/></svg></div><h3>3D websites</h3><p>Scroll-animated 3D sites that make your product or space the thing people screenshot and share. Like this one.</p></article>
+      </div>
+    </div></div>
+  </section>
+
+  <div id="work"></div>
+  <section class="chapter" data-stage="2" data-screen="0">
+    <div class="wrap"><div class="panel reveal work-card">
+      <span class="count">01</span>
+      <span class="eyebrow">Specialty coffee · Doha</span>
+      <h2>100 Coffee</h2>
+      <div class="cover"><img src="coffee.webp" alt="100 Coffee concept website: Brewed to a hundred, every single cup" loading="eager"><span class="tag">Concept</span></div>
+      <p>Bilingual menu site with WhatsApp ordering, live opening hours and a best-sellers strip. Built to answer "are they open, and what do I order?" in one screen.</p>
+      <span class="meta">Website · English + Arabic · WhatsApp ordering</span>
+      <div class="cta-row"><a class="btn btn-ghost" href="concepts/100-coffee/" target="_blank" rel="noopener">View the concept ↗</a></div>
+    </div></div>
+  </section>
+
+  <section class="chapter right" data-stage="3" data-screen="1">
+    <div class="wrap"><div class="panel reveal work-card">
+      <span class="count">02</span>
+      <span class="eyebrow">Wood-fired pizza · Beirut</span>
+      <h2>Crust &amp; Co.</h2>
+      <div class="cover"><img src="pizza.webp" alt="Crust and Co. concept 3D website with an exploding pizza" loading="eager"><span class="tag">Concept · 3D</span></div>
+      <p>A 3D pizza that breaks into its layers as you scroll: board, dough, sauce, cheese, toppings. The menu sells itself before anyone reads a price.</p>
+      <span class="meta">3D scroll website · Photoreal layers</span>
+      <div class="cta-row"><a class="btn btn-ghost" href="concepts/crust-and-co/" target="_blank" rel="noopener">View the concept ↗</a></div>
+    </div></div>
+  </section>
+
+
+
+  <section class="more" data-stage="4">
+    <div class="wrap">
+      <span class="eyebrow">More work</span>
+      <h2 style="margin:14px 0 30px">Seven more <span class="grad">builds.</span></h2>
+      <div class="grid"><a class="mini" href="https://freshbakery.netlify.app" target="_blank" rel="noopener"><div class="cover"><img src="covers/fresh-bakery.webp" alt="Fresh Bakery website cover" loading="lazy" width="1280" height="800"><span class="tag">Concept</span></div><h3>Fresh Bakery</h3><span class="meta">E-commerce · Online ordering</span></a><a class="mini" href="https://roasters-coffee-dubai-mall.pages.dev/" target="_blank" rel="noopener"><div class="cover"><img src="covers/roasters.webp" alt="Roasters Coffee Dubai Mall website cover" loading="lazy" width="1280" height="800"><span class="tag">Concept</span></div><h3>Roasters Coffee Dubai Mall</h3><span class="meta">Hospitality · Brand</span></a><a class="mini" href="https://image-dental-clinic.pages.dev/" target="_blank" rel="noopener"><div class="cover"><img src="covers/image-dental.webp" alt="IMAGE Dental Clinic website cover" loading="lazy" width="1280" height="800"><span class="tag">Concept</span></div><h3>IMAGE Dental Clinic</h3><span class="meta">Clinic · Arabic-first · Riyadh</span></a><a class="mini" href="https://oraldentalclinic.pages.dev/" target="_blank" rel="noopener"><div class="cover"><img src="covers/oral-dental.webp" alt="Oral Dental Clinics website cover" loading="lazy" width="1280" height="800"><span class="tag">Concept</span></div><h3>Oral Dental Clinics</h3><span class="meta">Clinic · Booking · Al Wurud</span></a><a class="mini" href="https://smilefactoryclinic.pages.dev/" target="_blank" rel="noopener"><div class="cover"><img src="covers/smile-factory.webp" alt="Smile Factory Clinic website cover" loading="lazy" width="1280" height="800"><span class="tag">Concept</span></div><h3>Smile Factory Clinic</h3><span class="meta">Clinic · Multi-branch</span></a><a class="mini" href="https://theperspectiveblog.netlify.app/" target="_blank" rel="noopener"><div class="cover"><img src="covers/blog.webp" alt="The Perspective Blog website cover" loading="lazy" width="1280" height="800"><span class="tag">Concept</span></div><h3>The Perspective Blog</h3><span class="meta">Blog · CMS</span></a><a class="mini" href="https://portfolio-landingsite.netlify.app/" target="_blank" rel="noopener"><div class="cover"><img src="covers/portfolio-template.webp" alt="Portfolio Template website cover" loading="lazy" width="1280" height="800"><span class="tag">Concept</span></div><h3>Portfolio Template</h3><span class="meta">Portfolio · Animation</span></a></div>
     </div>
-    <div class="stat">
-      <div class="stat-num">100%</div>
-      <div class="stat-label">Happy Clients</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">24/7</div>
-      <div class="stat-label">Support</div>
-    </div>
-  </div>
-</section>
+  </section>
+  <section class="chapter right" id="apps" data-stage="5">
+    <div class="wrap"><div class="panel reveal">
+      <span class="eyebrow">New · Mobile apps</span>
+      <h2>Your business, <span class="grad">in their pocket.</span></h2>
+      <p class="lead">Your customers already live on their phones. An app turns one-time visitors into regulars.</p>
+      <ul class="app-list">
+        <li><b>Book</b><span>Clinics and salons: patients book in three taps, reminders go out on their own.</span></li>
+        <li><b>Order</b><span>Cafés and restaurants: menu, cart and pickup time, without the DM chaos.</span></li>
+        <li><b>Return</b><span>Shops: stamps, points and offers that bring people back.</span></li>
+      </ul>
+      <div class="cta-row"><a class="btn btn-hot" href="#contact">Get a free app mockup</a></div>
+    </div></div>
+  </section>
 
-<!-- ABOUT -->
-<section id="about" class="about">
-  <div class="container">
-    <div class="about-inner">
-      <div>
-        <div class="section-label">About Me</div>
-        <h2 class="section-title">Crafting Digital Masterpieces, One Thread at a Time</h2>
-        <p style="color:var(--text2);margin-bottom:1rem;">I'm a passionate full-stack web developer dedicated to creating beautiful, functional websites that help businesses grow. With expertise in modern web technologies and a keen eye for design, I transform ideas into powerful digital experiences.</p>
-        <p style="color:var(--text2);">Every pixel is crafted with care and purpose. Whether you need a stunning portfolio, a robust e-commerce platform, or a custom web application, I'm here to make it happen.</p>
-        <div class="about-tags">
-          <span class="tag">Quality-Driven</span>
-          <span class="tag">Client-Focused</span>
-          <span class="tag">Results-Oriented</span>
-        </div>
-      </div>
-      <div class="about-stats-grid">
-        <div class="about-stat-card">
-          <div class="num">3+</div>
-          <div class="lbl">Years Experience</div>
-        </div>
-        <div class="about-stat-card">
-          <div class="num">50+</div>
-          <div class="lbl">Projects Completed</div>
-        </div>
-        <div class="about-stat-card">
-          <div class="num">40+</div>
-          <div class="lbl">Happy Clients</div>
-        </div>
-        <div class="about-stat-card">
-          <div class="num">100%</div>
-          <div class="lbl">Satisfaction Rate</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section id="services" class="services">
-  <div class="container">
-    <div class="section-label">Services</div>
-    <h2 class="section-title">What I Offer</h2>
-    <p class="section-desc">Comprehensive web development services tailored to your unique needs</p>
-    <div class="services-grid">
-
-      <div class="service-card">
-        <div class="service-icon">🖥️</div>
-        <h3>Custom Web Development</h3>
-        <p>Bespoke websites built from scratch using modern frameworks like Next.js, React, and TypeScript for optimal performance.</p>
-        <ul>
-          <li>Responsive Design</li>
-          <li>SEO Optimized</li>
-          <li>Fast Loading</li>
-          <li>Cross-browser Compatible</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">🎨</div>
-        <h3>UI/UX Design</h3>
-        <p>Beautiful, intuitive interfaces designed with user experience in mind. From wireframes to pixel-perfect designs.</p>
-        <ul>
-          <li>User Research</li>
-          <li>Wireframing</li>
-          <li>Prototyping</li>
-          <li>Visual Design</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">⚙️</div>
-        <h3>Backend Development</h3>
-        <p>Robust server-side solutions with secure databases, APIs, and authentication systems.</p>
-        <ul>
-          <li>Node.js &amp; Express</li>
-          <li>PostgreSQL/MySQL</li>
-          <li>REST APIs</li>
-          <li>Authentication</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">📱</div>
-        <h3>Mobile-Friendly Design</h3>
-        <p>Optimized experiences across all devices, ensuring your website looks perfect on smartphones, tablets, and desktops.</p>
-        <ul>
-          <li>Mobile-First</li>
-          <li>Touch Optimized</li>
-          <li>Progressive Web App</li>
-          <li>Performance Tuned</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">🛒</div>
-        <h3>E-commerce Solutions</h3>
-        <p>Full-featured online stores with secure payment processing, inventory management, and smooth checkout experiences.</p>
-        <ul>
-          <li>Payment Integration</li>
-          <li>Cart Systems</li>
-          <li>Product Management</li>
-          <li>Analytics</li>
-        </ul>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">📝</div>
-        <h3>CMS Integration</h3>
-        <p>Easy-to-manage content systems so you can update your site without coding.</p>
-        <ul>
-          <li>Content Updates</li>
-          <li>User Management</li>
-          <li>Media Library</li>
-          <li>Analytics</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- WORK -->
-<section id="work" class="work">
-  <div class="container">
-    <div class="section-label">Featured Work</div>
-    <h2 class="section-title">Recent Projects</h2>
-    <div class="work-grid">
-
-      <div class="project-card">
-        <img src="bakery-snapshot.png" alt="Fresh Bakery Website" />
-        <div class="project-body">
-          <h3>Fresh Bakery</h3>
-          <p>A warm, inviting e-commerce site for a local bakery with online ordering and custom cake design features.</p>
-          <div class="project-tags">
-            <span class="ptag">E-commerce</span>
-            <span class="ptag">React</span>
-            <span class="ptag">Next.js</span>
-            <span class="ptag">Tailwind</span>
-          </div>
-          <div class="project-links">
-            <a href="https://freshbakery.netlify.app" target="_blank" class="project-link primary">Live Demo</a>
-            <a href="https://freshbakery.netlify.app" target="_blank" class="project-link">Netlify</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <img src="https://websiteweaver.space-z.ai/nissan-pathfinder-cover.png" alt="Nissan Pathfinder Website" />
-        <div class="project-body">
-          <h3>Nissan Pathfinder</h3>
-          <p>Modern automotive showcase website featuring interactive gallery, specs comparison, and dealer locator.</p>
-          <div class="project-tags">
-            <span class="ptag">Showcase</span>
-            <span class="ptag">Next.js</span>
-            <span class="ptag">Responsive</span>
-            <span class="ptag">Animation</span>
-          </div>
-          <div class="project-links">
-            <a href="https://nissanpathfinder.netlify.app" target="_blank" class="project-link primary">Live Demo</a>
-            <a href="https://nissanpathfinder.netlify.app" target="_blank" class="project-link">Netlify</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <img src="https://websiteweaver.space-z.ai/portfolio-template-cover.png" alt="Portfolio Template Website" />
-        <div class="project-body">
-          <h3>Portfolio Template</h3>
-          <p>A modern, clean portfolio landing page template perfect for showcasing personal work and professional projects with elegant design.</p>
-          <div class="project-tags">
-            <span class="ptag">Portfolio</span>
-            <span class="ptag">Next.js</span>
-            <span class="ptag">Tailwind</span>
-            <span class="ptag">Responsive</span>
-          </div>
-          <div class="project-links">
-            <a href="https://portfolio-landingsite.netlify.app/" target="_blank" class="project-link primary">Live Demo</a>
-            <a href="https://portfolio-landingsite.netlify.app/" target="_blank" class="project-link">Netlify</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <img src="https://websiteweaver.space-z.ai/blog-platform-cover.png" alt="Blog Platform Website" />
-        <div class="project-body">
-          <h3>Blog Platform</h3>
-          <p>A comprehensive blog platform with article listing, clean typography, and content management features for modern writers.</p>
-          <div class="project-tags">
-            <span class="ptag">Blog</span>
-            <span class="ptag">CMS</span>
-            <span class="ptag">Next.js</span>
-            <span class="ptag">Responsive</span>
-          </div>
-          <div class="project-links">
-            <a href="https://theperspectiveblog.netlify.app/" target="_blank" class="project-link primary">Live Demo</a>
-            <a href="https://theperspectiveblog.netlify.app/" target="_blank" class="project-link">Netlify</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <img src="https://s0.wp.com/mshots/v1/https://roasters-coffee-dubai-mall.pages.dev/?w=800" alt="Roasters Coffee Dubai Mall Website" />
-        <div class="project-body">
-          <h3>Roasters Coffee Dubai Mall</h3>
-          <p>A luxury specialty coffee house site for the Dubai Mall Fashion Avenue location, built around immersive storytelling and batch discovery.</p>
-          <div class="project-tags">
-            <span class="ptag">Hospitality</span>
-            <span class="ptag">Landing</span>
-            <span class="ptag">Responsive</span>
-            <span class="ptag">Brand</span>
-          </div>
-          <div class="project-links">
-            <a href="https://roasters-coffee-dubai-mall.pages.dev/" target="_blank" class="project-link primary">Live Demo</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <img src="https://s0.wp.com/mshots/v1/https://image-dental-clinic.pages.dev/?w=800" alt="Image Dental Clinic Website" />
-        <div class="project-body">
-          <h3>Image Dental Clinic</h3>
-          <p>A polished Arabic-first clinic website for IMAGE Dental in Riyadh, focused on smile design, consultant booking, and patient trust.</p>
-          <div class="project-tags">
-            <span class="ptag">Clinic</span>
-            <span class="ptag">Healthcare</span>
-            <span class="ptag">Responsive</span>
-            <span class="ptag">Booking</span>
-          </div>
-          <div class="project-links">
-            <a href="https://image-dental-clinic.pages.dev/" target="_blank" class="project-link primary">Live Demo</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <img src="https://s0.wp.com/mshots/v1/https://oraldentalclinic.pages.dev/?w=800" alt="Oral Dental Clinic Website" />
-        <div class="project-body">
-          <h3>Oral Dental Clinic</h3>
-          <p>A modern multi-specialty dental clinic site for Oral Dental Clinics in Al Wurud, highlighting orthodontics, pediatrics, and cosmetic care.</p>
-          <div class="project-tags">
-            <span class="ptag">Clinic</span>
-            <span class="ptag">Healthcare</span>
-            <span class="ptag">Responsive</span>
-            <span class="ptag">Conversion</span>
-          </div>
-          <div class="project-links">
-            <a href="https://oraldentalclinic.pages.dev/" target="_blank" class="project-link primary">Live Demo</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <img src="https://s0.wp.com/mshots/v1/https://smilefactoryclinic.pages.dev/?w=800" alt="Smile Factory Clinic Website" />
-        <div class="project-body">
-          <h3>Smile Factory Clinic</h3>
-          <p>A mobile-optimized dental network site for SmileFactory Naqqache, engineered for fast booking across multi-branch locations.</p>
-          <div class="project-tags">
-            <span class="ptag">Clinic</span>
-            <span class="ptag">Healthcare</span>
-            <span class="ptag">Mobile-First</span>
-            <span class="ptag">Multi-Branch</span>
-          </div>
-          <div class="project-links">
-            <a href="https://smilefactoryclinic.pages.dev/" target="_blank" class="project-link primary">Live Demo</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section id="pricing" class="pricing">
-  <div class="container">
-    <div class="section-label">Pricing</div>
-    <h2 class="section-title">Simple, Transparent Pricing</h2>
-    <p class="section-desc">Choose the package that fits your needs. All plans include responsive design and SEO optimization.</p>
-
-    <div class="pricing-grid">
-
-      <div class="pricing-card">
-        <h3>Starter</h3>
-        <div class="price">$300</div>
-        <div class="price-sub">Perfect for personal projects</div>
-        <ul>
-          <li>1-page website</li>
-          <li>Responsive design</li>
-          <li>SEO optimized</li>
-          <li>Contact form</li>
-          <li>1 revision</li>
-        </ul>
-        <a href="#contact" class="pricing-btn">Get Started</a>
-      </div>
-
-      <div class="pricing-card popular">
-        <div class="popular-badge">Most Popular</div>
-        <h3>Professional</h3>
-        <div class="price">$750</div>
-        <div class="price-sub">Great for small businesses</div>
-        <ul>
-          <li>Up to 5 pages</li>
-          <li>Advanced responsive design</li>
-          <li>SEO optimized</li>
-          <li>Custom animations</li>
-          <li>3 revisions</li>
-        </ul>
-        <a href="#contact" class="pricing-btn accent">Get Started</a>
-      </div>
-
-      <div class="pricing-card">
-        <h3>Enterprise</h3>
-        <div class="price">$1,500+</div>
-        <div class="price-sub">For complex projects</div>
-        <ul>
-          <li>Unlimited pages</li>
-          <li>Custom features</li>
-          <li>E-commerce integration</li>
-          <li>CMS integration</li>
-          <li>Unlimited revisions</li>
-        </ul>
-        <a href="#contact" class="pricing-btn">Get Started</a>
-      </div>
-
-    </div>
-
-    <div class="pricing-extras">
-      <div class="extra-card">
-        <h4>Starter Plan</h4>
-        <p>Domain: $10–$15/year</p>
-        <p>Hosting: $3–$10/month</p>
-      </div>
-      <div class="extra-card">
-        <h4>Professional Plan</h4>
-        <p>Domain: $12–$20/year</p>
-        <p>Hosting: $8–$18/month</p>
-      </div>
-      <div class="extra-card">
-        <h4>Enterprise Plan</h4>
-        <p>Domain: $15–$25/year</p>
-        <p>Hosting: $15–$25/month</p>
-      </div>
-      <div class="extra-card">
-        <h4>Maintenance &amp; Support</h4>
-        <p>Keep your website running smoothly with ongoing support.</p>
-        <p style="margin-top:0.5rem;">Updates: $50–$150/month</p>
-        <p>24/7 email support included</p>
+  <section class="chapter" data-stage="6" style="min-height:auto">
+    <div class="wrap">
+      <span class="eyebrow">How it works</span>
+      <h2 style="margin-top:14px">Three steps. <span class="grad">No guesswork.</span></h2>
+      <div class="steps reveal">
+        <div><h3>Free mockup</h3><p>Tell me about your business. I send a 1-minute concept of your site or app.</p></div>
+        <div><h3>Build</h3><p>Pick a plan, pay the deposit, and I build with you in the loop at every step.</p></div>
+        <div><h3>Launch &amp; care</h3><p>You go live. The care plan keeps hosting, domain, security and updates handled.</p></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- TECH STACK -->
-<section class="tech">
-  <div class="container" style="text-align:center;">
-    <div class="section-label">Tech Stack</div>
-    <h2 class="section-title">Tools &amp; Technologies</h2>
-    <div class="tech-grid">
-      <span class="tech-tag">HTML/CSS</span>
-      <span class="tech-tag">TypeScript</span>
-      <span class="tech-tag">React</span>
-      <span class="tech-tag">Next.js</span>
-      <span class="tech-tag">Node.js</span>
-      <span class="tech-tag">PostgreSQL</span>
-      <span class="tech-tag">Prisma</span>
-      <span class="tech-tag">Tailwind CSS</span>
-      <span class="tech-tag">Hostinger</span>
-      <span class="tech-tag">Netlify</span>
-      <span class="tech-tag">GitHub</span>
-      <span class="tech-tag">GraphQL</span>
-      <span class="tech-tag">REST API</span>
+  <section class="pricing" id="pricing" data-stage="7">
+    <div class="wrap">
+      <span class="eyebrow">Packages</span>
+      <h2 style="margin-top:14px">Clear prices. <span class="grad">Split payments.</span></h2>
+      <div class="tabs" role="tablist" aria-label="Package type">
+        <button role="tab" id="tab-web" aria-selected="true" data-set="web">Websites</button>
+        <button role="tab" id="tab-app" aria-selected="false" data-set="app">Apps</button>
+        <button role="tab" id="tab-3d" aria-selected="false" data-set="d3">3D</button>
+      </div>
+      <div class="plans" id="plans" role="tabpanel"></div>
+      <p class="fine">Pay in installments: about a third up front, the rest over 4 months, and your site goes live after the deposit. Care plan $15/month or $150/year.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CONTACT -->
-<section id="contact" class="contact">
-  <div class="container">
-    <div class="section-label">Contact</div>
-    <h2 class="section-title">Let's Work Together</h2>
-    <p class="section-desc" style="margin-bottom:3rem;">Ready to start your project? Fill out form below or reach out directly.</p>
-    <div class="contact-inner">
+  <section class="chapter" data-stage="8" style="min-height:auto">
+    <div class="wrap">
+      <span class="eyebrow">Questions</span>
+      <h2 style="margin:14px 0 30px">Before you <span class="grad">ask.</span></h2>
+      <div class="faq">
+        <details><summary>Do I need a website or an app?</summary><p>Most businesses start with a website so people can find them on Google. An app makes sense once you have regulars who book or order often.</p></details>
+        <details><summary>How long does it take?</summary><p>It depends on the plan. You get a clear timeline together with your free mockup.</p></details>
+        <details><summary>Can I pay in parts?</summary><p>Yes. A deposit of about a third, then monthly installments over 4 months.</p></details>
+        <details><summary>Who looks after it after launch?</summary><p>The care plan covers hosting, domain, security and up to 5 updates a month.</p></details>
+        <details><summary>Are the projects above real clients?</summary><p>They are concept builds, made to show what your business could look like. Yours could be next.</p></details>
+      </div>
+    </div>
+  </section>
 
-      <form class="contact-form" onsubmit="return false;">
-        <div class="form-group">
-          <label>Name <span>*</span></label>
-          <input type="text" placeholder="Your name" />
+  <section class="contact" id="contact" data-stage="9">
+    <div class="wrap">
+      <span class="eyebrow">Free 1-minute mockup</span>
+      <h2 style="margin-top:14px">Your customers are searching. <span class="grad">Be found.</span></h2>
+      <p class="lead">Tell me what you do and I'll send a quick concept of your website or app. No commitment.</p>
+      <div class="cta-row" style="justify-content:center"><a class="btn btn-ghost" href="https://instagram.com/website.weaver" target="_blank" rel="noopener">DM @website.weaver</a></div>
+      <form id="leadForm" novalidate>
+        <div class="form-row">
+          <div><label for="fName">Your name</label><input id="fName" name="name" autocomplete="name" required></div>
+          <div><label for="fBiz">Business</label><input id="fBiz" name="business" placeholder="e.g. café in Hamra" required></div>
         </div>
-        <div class="form-group">
-          <label>Email <span>*</span></label>
-          <input type="email" placeholder="your@email.com" />
-        </div>
-        <div class="form-group">
-          <label>Service Type</label>
-          <select>
-            <option value="">* Select a service</option>
-            <option>Custom Web Development</option>
-            <option>UI/UX Design</option>
-            <option>Portfolio Website</option>
-            <option>Backend Development</option>
-            <option>Mobile-Friendly Design</option>
-            <option>E-commerce Solutions</option>
-            <option>CMS Integration</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Budget</label>
-          <select>
-            <option value="">* Select your budget</option>
-            <option>$300 (Starter - 1 page)</option>
-            <option>$750 (Professional - up to 5 pages)</option>
-            <option>$1,500+ (Enterprise - unlimited pages)</option>
-            <option>Custom / Not sure yet</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Message <span>*</span></label>
-          <textarea placeholder="Tell me about your project..."></textarea>
-        </div>
-        <button type="submit" class="form-submit">Send Message</button>
+        <div><label for="fWant">I need</label>
+          <select id="fWant" name="need"><option>A website</option><option>A mobile app</option><option>A 3D website</option><option>Not sure yet</option></select></div>
+        <div><label for="fContact">WhatsApp or Instagram</label><input id="fContact" name="contact" placeholder="+961… or @handle" required></div>
+        <button class="btn btn-hot" type="submit" style="justify-content:center;margin-top:8px">Send me my mockup</button>
+        <p id="formNote" role="status"></p>
       </form>
-
-      <div class="contact-info">
-        <a href="https://www.instagram.com/website.weaver" target="_blank" class="contact-item" style="text-decoration:none;">
-          <div class="contact-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-          </div>
-          <div class="contact-item-text">
-            <h4>DM on Instagram</h4>
-            <p>@websiteweaver0</p>
-          </div>
-        </a>
-        <a href="mailto:websiteweaver0@gmail.com" class="contact-item" style="text-decoration:none;">
-          <div class="contact-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-          </div>
-          <div class="contact-item-text">
-            <h4>websiteweaver0@gmail.com</h4>
-            <p>Response within 24 hours</p>
-          </div>
-        </a>
-      </div>
-
     </div>
-  </div>
-</section>
+  </section>
+</main>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div>
-        <div class="footer-logo">
-          <img src="https://websiteweaver.space-z.ai/logo.png" alt="Website Weaver" />
-          Website Weaver
-        </div>
-        <div class="footer-tagline">Crafting Digital Masterpieces, One Thread at a Time</div>
-        <div class="footer-social" style="margin-top:1rem;">
-          <a href="https://www.instagram.com/websiteweaver0" target="_blank" class="social-btn" aria-label="Instagram">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-          </a>
-          <a href="mailto:websiteweaver0@gmail.com" class="social-btn" aria-label="Email">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-          </a>
-        </div>
-      </div>
-      <div class="footer-links">
-        <a href="#about">About</a>
-        <span>|</span>
-        <a href="#services">Services</a>
-        <span>|</span>
-        <a href="#work">Work</a>
-        <span>|</span>
-        <a href="#pricing">Pricing</a>
-        <span>|</span>
-        <a href="#contact">Book</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      © 2026 Website Weaver. All rights reserved.
-    </div>
-  </div>
-</footer>
+<footer><div class="wrap"><span>Website Weaver · Websites &amp; Apps · Crafting Digital Presence</span><a href="https://instagram.com/website.weaver" target="_blank" rel="noopener">@website.weaver</a></div></footer>
+
+<script>
+/* pricing tabs */
+const SETS={
+  web:[{n:"Starter",p:"$300",f:["1 page","Mobile-ready, fast","1 revision"]},
+       {n:"Professional",p:"$750",pop:1,f:["Up to 5 pages","Animations","3 revisions"]},
+       {n:"Enterprise",p:"$1,500+",f:["E-commerce","CMS you can edit","Custom features"]}],
+  app:[{n:"App Starter",p:"$1,200",f:["Installs from the browser","Booking or menu ordering","Your branding"]},
+       {n:"App Pro",p:"$2,500",pop:1,f:["iPhone + Android","Logins & notifications","Admin panel"]},
+       {n:"Custom",p:"$4,000+",f:["Payments & loyalty","Integrations","App Store publishing"]}],
+  d3:[{n:"3D Hero",p:"+$250",f:["Add to any plan","One 3D scroll moment","Your product in 3D"]},
+      {n:"Signature 3D",p:"$1,000",pop:1,f:["One-page 3D site","Scroll-driven story","Like Crust & Co."]},
+      {n:"Walk-in 3D",p:"$2,000+",f:["Walk through your space","Room by room","Hotels, clinics, interiors"]}]
+};
+const plansEl=document.getElementById('plans');
+function renderPlans(k){
+  plansEl.innerHTML=SETS[k].map(s=>`<div class="plan${s.pop?' pop':''}">${s.pop?'<span class="badge">Most popular</span>':''}<span class="name">${s.n}</span><span class="price">${s.p}</span><ul>${s.f.map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('');
+  plansEl.setAttribute('aria-labelledby','tab-'+(k==='d3'?'3d':k));
+}
+document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.tabs button').forEach(x=>x.setAttribute('aria-selected',x===b?'true':'false'));
+  renderPlans(b.dataset.set);
+}));
+renderPlans('web');
+
+/* form (preview) */
+document.getElementById('leadForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const f=e.target, ok=[...f.querySelectorAll('[required]')].every(i=>i.value.trim());
+  document.getElementById('formNote').textContent= ok
+    ? "Thanks! This is a preview, so nothing was sent. On the live site this goes straight to Elissa."
+    : "Please fill in your name, business and WhatsApp or Instagram.";
+});
+
+/* reveal: content starts visible; only elements below the fold get the pre state */
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.remove('pre');io.unobserve(en.target)}}),{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>{ if(el.getBoundingClientRect().top>innerHeight){el.classList.add('pre');io.observe(el)} });
+}
+</script>
+
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+
+const canvas=document.getElementById('stage');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let renderer;
+try{ renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false}); }catch(e){ canvas.remove(); throw e; }
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.outputColorSpace=THREE.SRGBColorSpace;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+const scene=new THREE.Scene();
+scene.background=new THREE.Color('#070816');
+scene.fog=new THREE.Fog('#070816',9,22);
+const camera=new THREE.PerspectiveCamera(38,1,.1,60);
+camera.position.set(0,0,9);
+
+/* lights */
+scene.add(new THREE.AmbientLight('#8c86c9',.6));
+const key=new THREE.PointLight('#a855f7',40,30); key.position.set(-4,3,5); scene.add(key);
+const rim=new THREE.PointLight('#ff3d8b',30,30); rim.position.set(5,-2,3); scene.add(rim);
+const fill=new THREE.DirectionalLight('#ffffff',.9); fill.position.set(0,4,6); scene.add(fill);
+
+/* the woven web: a torus knot drawn as glowing threads */
+const knotGeo=new THREE.TorusKnotGeometry(1.25,.42,260,18,2,3);
+const wire=new THREE.WireframeGeometry(knotGeo);
+const threadMat=new THREE.ShaderMaterial({
+  transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+  uniforms:{uT:{value:0},uA:{value:1}},
+  vertexShader:`varying vec3 vP; void main(){ vP=position; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.); }`,
+  fragmentShader:`uniform float uT; uniform float uA; varying vec3 vP;
+    void main(){ float g=clamp((vP.x+vP.y)*.28+.5,0.,1.);
+      vec3 c=mix(vec3(.48,.18,.97),vec3(1.,.24,.55),g);
+      float pulse=.55+.45*sin(length(vP)*6.-uT*2.2);
+      gl_FragColor=vec4(c*(.6+pulse*.8),.16*uA*(.5+pulse)); }`
+});
+const knot=new THREE.Group();
+knot.add(new THREE.LineSegments(wire,threadMat));
+const dotGeo=new THREE.BufferGeometry().setAttribute('position',knotGeo.getAttribute('position'));
+const dotMat=new THREE.PointsMaterial({color:'#c9b6ff',size:.025,transparent:true,opacity:.7,blending:THREE.AdditiveBlending,depthWrite:false});
+knot.add(new THREE.Points(dotGeo,dotMat));
+scene.add(knot);
+
+/* star dust */
+{
+  const n=900,p=new Float32Array(n*3);
+  for(let i=0;i<n;i++){p[i*3]=(Math.random()-.5)*30;p[i*3+1]=(Math.random()-.5)*20;p[i*3+2]=-Math.random()*14-1;}
+  const g=new THREE.BufferGeometry().setAttribute('position',new THREE.BufferAttribute(p,3));
+  scene.add(new THREE.Points(g,new THREE.PointsMaterial({color:'#7f88ff',size:.03,transparent:true,opacity:.6})));
+}
+
+/* textures */
+const loader=new THREE.TextureLoader();
+function tex(src){const t=loader.load(src);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;return t;}
+const shots=[tex('coffee.webp'),tex('pizza.webp')];
+const phoneShots=[tex('coffee-ph.webp'),tex('pizza-ph.webp')];
+
+/* an app screen drawn in code (booking app concept) */
+function appScreen(){
+  const c=document.createElement('canvas');c.width=390;c.height=844;const x=c.getContext('2d');
+  const g=x.createLinearGradient(0,0,0,844);g.addColorStop(0,'#141a3a');g.addColorStop(1,'#0a0c1e');x.fillStyle=g;x.fillRect(0,0,390,844);
+  x.fillStyle='#c9b6ff';x.font='600 13px Manrope, sans-serif';x.fillText('GLOW CLINIC · CONCEPT',24,70);
+  x.fillStyle='#fff';x.font='800 34px Manrope, sans-serif';x.fillText('Book a visit',24,112);
+  const days=['Mon 9','Tue 10','Wed 11','Thu 12'];
+  days.forEach((d,i)=>{const X=24+i*86;x.fillStyle=i===1?'#ff3d8b':'rgba(255,255,255,.08)';rr(x,X,140,76,64,16);x.fill();
+    x.fillStyle='#fff';x.font='700 15px Manrope';x.fillText(d.split(' ')[0],X+18,168);x.font='800 20px Manrope';x.fillText(d.split(' ')[1],X+18,192);});
+  x.fillStyle='#a9a6c9';x.font='600 14px Manrope';x.fillText('Available times',24,250);
+  const times=['10:00','11:30','1:00','2:30','4:30','6:00'];
+  times.forEach((t,i)=>{const X=24+(i%3)*116,Y=268+Math.floor(i/3)*62;x.fillStyle=i===4?'#7b2ff7':'rgba(255,255,255,.07)';rr(x,X,Y,104,48,14);x.fill();
+    x.fillStyle='#fff';x.font='700 17px Manrope';x.textAlign='center';x.fillText(t,X+52,Y+30);x.textAlign='left';});
+  x.fillStyle='rgba(255,255,255,.06)';rr(x,24,420,342,150,20);x.fill();
+  x.fillStyle='#fff';x.font='800 18px Manrope';x.fillText('Teeth whitening',44,458);
+  x.fillStyle='#a9a6c9';x.font='500 15px Manrope';x.fillText('Dr. Rana · 45 min',44,486);x.fillText('Tue 10 Nov · 4:30 PM',44,512);
+  x.fillStyle='#c9b6ff';x.fillText('Reminder 1 hour before',44,546);
+  const b=x.createLinearGradient(24,0,366,0);b.addColorStop(0,'#7b2ff7');b.addColorStop(1,'#ff3d8b');x.fillStyle=b;rr(x,24,740,342,60,30);x.fill();
+  x.fillStyle='#fff';x.font='800 19px Manrope';x.textAlign='center';x.fillText('Confirm booking',195,777);
+  const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t;
+}
+function rr(x,a,b,w,h,r){x.beginPath();x.roundRect?x.roundRect(a,b,w,h,r):x.rect(a,b,w,h);}
+let appTex=appScreen();
+document.fonts&&document.fonts.ready.then(()=>{appTex=appScreen();});
+
+/* laptop */
+const metal=new THREE.MeshStandardMaterial({color:'#23253a',metalness:.85,roughness:.32});
+const laptop=new THREE.Group();
+const base=new THREE.Mesh(new THREE.BoxGeometry(3.3,.1,2.2),metal); laptop.add(base);
+const deck=new THREE.Mesh(new THREE.PlaneGeometry(2.9,1.1),new THREE.MeshStandardMaterial({color:'#11121f',roughness:.8}));
+deck.rotation.x=-Math.PI/2;deck.position.set(0,.051,-.35);laptop.add(deck);
+const keyGlow=new THREE.Mesh(new THREE.PlaneGeometry(2.7,.95),new THREE.MeshBasicMaterial({color:'#7b2ff7',transparent:true,opacity:.22}));
+keyGlow.rotation.x=-Math.PI/2;keyGlow.position.set(0,.053,-.35);laptop.add(keyGlow);
+const hinge=new THREE.Group(); hinge.position.set(0,.05,-1.1); laptop.add(hinge);
+const lid=new THREE.Mesh(new THREE.BoxGeometry(3.3,2.15,.07),metal); lid.position.set(0,1.075,-.035); hinge.add(lid);
+const screenMat=new THREE.MeshBasicMaterial({map:shots[0],toneMapped:false});
+const screen=new THREE.Mesh(new THREE.PlaneGeometry(3.08,1.925),screenMat); screen.position.set(0,1.09,.002); hinge.add(screen);
+scene.add(laptop);
+
+/* phone */
+const phone=new THREE.Group();
+const body=new THREE.Mesh(new THREE.BoxGeometry(1.02,2.12,.1),new THREE.MeshStandardMaterial({color:'#1b1d30',metalness:.9,roughness:.25}));
+phone.add(body);
+const phMat=new THREE.MeshBasicMaterial({map:phoneShots[0],toneMapped:false});
+const phScreen=new THREE.Mesh(new THREE.PlaneGeometry(.94,2.03),phMat); phScreen.position.z=.052; phone.add(phScreen);
+scene.add(phone);
+
+/* stage keyframes: k=knot, l=laptop, p=phone. [x,y,scale,rotY], lid = hinge angle (0 open, 1.57 closed) */
+const K=[
+ {k:[2.4,.1,1.55,0,1],  l:[2.4,-4.8,.7,-.4], lid:1.57, p:[3.6,-5.5,.6,-.3], s:0},
+ {k:[3.2,2.2,.55,0,.7], l:[2.2,-.35,1,-.45], lid:-.18, p:[3.95,-.55,.95,-.35], s:0},
+ {k:[-3.6,2.6,.45,0,.5],l:[2.1,-.1,1.12,-.38],lid:-.18, p:[3.85,-.45,1,-.28], s:0},
+ {k:[3.6,2.6,.45,0,.5], l:[-2.1,-.1,1.12,.38],lid:-.18, p:[-3.85,-.45,1,.28], s:1},
+ {k:[0,0,2.4,0,.35],    l:[0,-6.5,.6,0],      lid:1.57, p:[0,-7,.8,0],        s:1},
+ {k:[-3.2,-2.2,.6,0,.6],l:[-3.4,-3.6,.6,.5],  lid:1.2,  p:[-2.1,0,1.75,.25],  s:3},
+ {k:[0,0,2.2,0,.45],    l:[0,-6.5,.6,0],      lid:1.57, p:[0,-7,.8,0],        s:3},
+ {k:[0,0,2.6,0,.3],     l:[0,-6.5,.6,0],      lid:1.57, p:[0,-7,.8,0],        s:3},
+ {k:[0,0,2.6,0,.3],     l:[0,-6.5,.6,0],      lid:1.57, p:[0,-7,.8,0],        s:3},
+ {k:[0,.4,1.4,0,1],     l:[0,-6.5,.6,0],      lid:1.57, p:[0,-7,.8,0],        s:3},
+];
+const stages=[...document.querySelectorAll('[data-stage]')];
+let mobile=false;
+function resize(){
+  const w=innerWidth,h=innerHeight; mobile=w<860;
+  renderer.setSize(w,h,false); camera.aspect=w/h;
+  camera.fov=mobile?50:38; camera.updateProjectionMatrix();
+}
+addEventListener('resize',resize); resize();
+
+/* where are we: index + fraction between stage tops (measured at 45% of viewport) */
+function progress(){
+  const mark=innerHeight*.45; let i=0;
+  for(let j=0;j<stages.length;j++){ if(stages[j].getBoundingClientRect().top<=mark) i=j; }
+  const a=stages[i].getBoundingClientRect().top, b=stages[i+1]?stages[i+1].getBoundingClientRect().top:a+1;
+  let f=stages[i+1]?(mark-a)/(b-a):0; f=Math.min(Math.max(f,0),1);
+  f=f<.55?0:(f-.55)/.45;                     /* hold, then glide into the next chapter */
+  f=f*f*(3-2*f);
+  return {i:+stages[i].dataset.stage, n:stages[i+1]?+stages[i+1].dataset.stage:+stages[i].dataset.stage, f};
+}
+const lerp=(a,b,t)=>a+(b-a)*t;
+const cur={k:[...K[0].k],l:[...K[0].l],lid:K[0].lid,p:[...K[0].p]};
+let shown=-1, mx=0, my=0;
+addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;});
+
+function place(v,mob){ /* on phones everything sits centred above the text panel */
+  if(!mob) return v;
+  return [v[0]*.18, v[1]<-4?-10:v[1]*.8+1.55, v[2]*.62, v[3]];
+}
+const clock=new THREE.Clock();
+function frame(){
+  const t=clock.getElapsedTime();
+  const {i,n,f}=progress(); const A=K[i]||K[0], B=K[n]||A;
+  const ease=reduce?1:.075;
+  for(const key of ['k','l','p']){
+    const tgt=place(A[key].map((x,j)=>lerp(x,B[key][j]??x,f)),mobile);
+    for(let j=0;j<tgt.length;j++) cur[key][j]=lerp(cur[key][j],tgt[j],ease);
+  }
+  cur.lid=lerp(cur.lid,lerp(A.lid,B.lid,f),ease*1.2);
+  const s=f>.5?B.s:A.s;
+  if(s!==shown){ shown=s; if(s<3){screenMat.map=shots[s];phMat.map=phoneShots[s];} else phMat.map=appTex; screenMat.needsUpdate=phMat.needsUpdate=true; }
+  if(s===3 && phMat.map!==appTex){phMat.map=appTex;phMat.needsUpdate=true;}
+
+  knot.position.set(cur.k[0],cur.k[1],-.6); knot.scale.setScalar(cur.k[2]);
+  knot.rotation.set(t*.07+my*.3, t*.11+mx*.4, t*.04);
+  threadMat.uniforms.uT.value=t; threadMat.uniforms.uA.value=cur.k[4]??1; dotMat.opacity=.7*(cur.k[4]??1);
+
+  const bob=reduce?0:Math.sin(t*1.1)*.06;
+  laptop.position.set(cur.l[0],cur.l[1]+bob,0); laptop.scale.setScalar(cur.l[2]);
+  laptop.rotation.set(.32+my*.12, cur.l[3]+mx*.25, 0);
+  hinge.rotation.x=cur.lid;
+  phone.position.set(cur.p[0],cur.p[1]-bob,1.1); phone.scale.setScalar(cur.p[2]);
+  phone.rotation.set(.08+my*.1, cur.p[3]+mx*.3+(reduce?0:Math.sin(t*.8)*.05), -.04);
+
+  camera.position.x=lerp(camera.position.x,mx*.5,.05); camera.position.y=lerp(camera.position.y,-my*.3,.05);
+  camera.lookAt(0,0,0);
+  renderer.render(scene,camera);
+  requestAnimationFrame(frame);
+}
+frame();
+</script>
 
 </body>
 </html>

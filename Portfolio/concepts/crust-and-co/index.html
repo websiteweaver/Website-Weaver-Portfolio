@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Crust &amp; Co. · Concept</title>
+<meta name="description" content="Concept site by Website Weaver: a wood-fired pizza spot in Beirut, with a 3D pizza that breaks into its layers as you scroll.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#120D0A; --bg2:#1C1410; --ink:#FFF4E6; --muted:#C9B29A;
+  --tomato:#E8432E; --basil:#3F9142; --gold:#F4B860;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter Display','Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:linear-gradient(var(--bg),rgba(18,13,10,0))}
+.brand{font-weight:900;letter-spacing:-.03em;font-size:19px}
+.brand i{font-style:normal;color:var(--tomato)}
+.navbtn{background:var(--tomato);color:#fff;font-weight:800;font-size:13px;padding:9px 15px;border-radius:99px}
+
+/* hero / 3D stage */
+#hero{height:520vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;
+  background:radial-gradient(ellipse 80% 55% at 50% 58%,#3A2416 0%,var(--bg) 70%)}
+.head{position:absolute;left:0;right:0;top:12vh;text-align:center;z-index:5;padding:0 18px}
+.head h1{margin:0;font-weight:900;font-size:clamp(46px,14vw,92px);line-height:.9;letter-spacing:-.05em}
+.head h1 span{color:var(--tomato)}
+.head p{margin:14px 0 0;color:var(--muted);font-weight:600;font-size:15px}
+.scroll-hint{position:absolute;left:0;right:0;bottom:6vh;text-align:center;font-size:12px;font-weight:700;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
+.scene{position:absolute;inset:0;z-index:2;perspective:1000px;perspective-origin:50% 40%}
+.pizza{position:absolute;left:50%;top:62%;width:var(--S);height:var(--S);margin:calc(var(--S)/-2) 0 0 calc(var(--S)/-2);transform-style:preserve-3d}
+.layer{position:absolute;inset:0;transform-style:preserve-3d}
+.layer img{display:block;filter:drop-shadow(0 6px 10px rgba(0,0,0,.55))}
+.shadow{position:absolute;left:50%;top:62%;width:var(--S);height:var(--S);margin:calc(var(--S)/-2) 0 0 calc(var(--S)/-2);border-radius:50%;
+  background:radial-gradient(closest-side,rgba(0,0,0,.65),rgba(0,0,0,0));filter:blur(8px)}
+#tags{position:absolute;inset:0;z-index:8;pointer-events:none}
+.tag{position:absolute;z-index:6;background:rgba(28,20,16,.78)!important;display:flex;align-items:center;gap:8px;padding:8px 13px 8px 9px;border-radius:99px;
+  background:rgba(255,244,230,.08);border:1px solid rgba(255,244,230,.16);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  font-size:13px;font-weight:700;white-space:nowrap;opacity:0;transition:none}
+.tag b{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--tomato);font-size:11px}
+.tag small{display:block;font-weight:500;color:var(--muted);font-size:11px;margin-top:1px}
+.ready{position:absolute;left:0;right:0;top:11vh;text-align:center;z-index:6;opacity:0;padding:0 18px}
+.ready h2{margin:0;font-size:clamp(38px,11vw,72px);font-weight:900;letter-spacing:-.05em;line-height:.95}
+.ready .btns{display:flex;gap:10px;justify-content:center;margin-top:18px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:15px;padding:13px 20px;border-radius:99px;background:#25D366;color:#06210f}
+.btn.ghost{background:rgba(255,244,230,.1);color:var(--ink);border:1px solid rgba(255,244,230,.2)}
+.float{position:absolute;z-index:1;pointer-events:none;opacity:.9}
+
+/* sections */
+section.s{padding:72px 18px;max-width:980px;margin:0 auto}
+.kicker{font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--tomato)}
+h3.t{margin:8px 0 24px;font-size:clamp(32px,9vw,54px);font-weight:900;letter-spacing:-.045em;line-height:.95}
+.menu{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.card{background:var(--bg2);border:1px solid rgba(255,244,230,.08);border-radius:22px;padding:14px;display:flex;flex-direction:column}
+.card .img{aspect-ratio:1;border-radius:16px;background:radial-gradient(circle at 50% 45%,#3A2416,#1C1410 70%);display:grid;place-items:center}
+.card .img img{display:block;max-width:100%;filter:drop-shadow(0 8px 14px rgba(0,0,0,.5))}
+.card h4{margin:12px 0 2px;font-size:17px;font-weight:800;letter-spacing:-.02em}
+.card p{margin:0;color:var(--muted);font-size:13px;line-height:1.35;flex:1}
+.card .row{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.price{font-weight:900;font-size:17px}
+.add{width:34px;height:34px;border-radius:50%;background:var(--tomato);display:grid;place-items:center;font-weight:900}
+.reviews{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.rev{background:var(--bg2);border-radius:22px;padding:18px;border:1px solid rgba(255,244,230,.08)}
+.rev .st{color:var(--gold);letter-spacing:2px}
+.rev p{margin:8px 0 10px;font-size:15px;line-height:1.45}
+.rev span{color:var(--muted);font-size:12px;font-weight:700}
+.visit{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.box{background:var(--bg2);border-radius:22px;padding:20px;border:1px solid rgba(255,244,230,.08)}
+.box h4{margin:0 0 10px;font-size:18px}
+.box p{margin:4px 0;color:var(--muted);font-size:14px}
+.map{height:150px;border-radius:16px;margin-top:12px;background:
+  linear-gradient(90deg,rgba(255,244,230,.05) 1px,transparent 1px) 0 0/22px 22px,
+  linear-gradient(rgba(255,244,230,.05) 1px,transparent 1px) 0 0/22px 22px,#24180f;position:relative}
+.map:after{content:"";position:absolute;left:50%;top:45%;width:22px;height:22px;margin:-11px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--tomato);box-shadow:0 0 0 6px rgba(232,67,46,.25)}
+footer{padding:36px 18px 90px;text-align:center;color:var(--muted);font-size:13px;border-top:1px solid rgba(255,244,230,.08)}
+footer .lang{display:inline-flex;gap:4px;background:var(--bg2);border-radius:99px;padding:4px;margin-bottom:14px}
+footer .lang span{padding:6px 14px;border-radius:99px;font-weight:800;font-size:13px}
+footer .lang span.on{background:var(--ink);color:var(--bg)}
+.concept{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:30;font-size:11px;font-weight:700;color:#EEE7FB;
+  background:rgba(11,11,20,.82);border:1px solid rgba(123,47,247,.6);padding:7px 12px;border-radius:99px;white-space:nowrap}
+.concept b{background:linear-gradient(90deg,#B07CFF,#FF3D8B);-webkit-background-clip:text;background-clip:text;color:transparent}
+@media (prefers-reduced-motion:reduce){#hero{height:100vh}}
+</style>
+</head>
+<body>
+<nav><a class="brand" href="#">CRUST <i>&amp;</i> CO.</a><a class="navbtn" href="#visit">Order</a></nav>
+
+<div id="hero">
+  <div class="stage" id="stage">
+    <div class="head" id="head">
+      <h1>Fire.<br>Dough.<br><span>Beirut.</span></h1>
+      <p>Wood-fired pizza, made slow.</p>
+    </div>
+    <div class="shadow" id="shadow"></div>
+    <div class="scene"><div class="pizza" id="pizza"></div></div>
+    <div id="tags"></div>
+    <div class="ready" id="ready">
+      <h2>Your pizza<br>is <span style="color:var(--tomato)">ready.</span></h2>
+      <div class="btns"><a class="btn" href="#visit">● Order on WhatsApp</a><a class="btn ghost" href="#menu">Menu</a></div>
+    </div>
+    <div class="scroll-hint" id="hint">Scroll ↓</div>
+  </div>
+</div>
+
+<section class="s" id="menu">
+  <div class="kicker">The menu</div>
+  <h3 class="t">Four pizzas.<br>No shortcuts.</h3>
+  <div class="menu" id="menuGrid"></div>
+</section>
+
+<section class="s">
+  <div class="kicker">Reviews (sample)</div>
+  <h3 class="t">What people say.</h3>
+  <div class="reviews">
+    <div class="rev"><div class="st">★★★★★</div><p>“Your best Google review goes here, pulled in automatically.”</p><span>Sample review</span></div>
+    <div class="rev"><div class="st">★★★★★</div><p>“Second review card. Real reviews only, straight from your Google profile.”</p><span>Sample review</span></div>
+  </div>
+</section>
+
+<section class="s" id="visit">
+  <div class="kicker">Visit or order</div>
+  <h3 class="t">Hot in 25 minutes.</h3>
+  <div class="visit">
+    <div class="box"><h4>Open daily</h4><p>12:00 pm – 12:00 am</p><p>Dine in · Takeaway · Delivery</p>
+      <div class="btns" style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap"><a class="btn" href="#">● WhatsApp</a><a class="btn ghost" href="#">Toters</a></div></div>
+    <div class="box"><h4>Find us</h4><p>Your street, Beirut</p><div class="map"></div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="lang"><span class="on">EN</span><span>العربية</span></div>
+  <div>CRUST &amp; CO. is a concept brand. Concept site designed &amp; built by Website Weaver.</div>
+</footer>
+<div class="concept">Concept site · built by <b>Website Weaver</b></div>
+
+<script>
+/* ---------- photo layers (Magnific, top-down on black, cut out) ---------- */
+const IMG=n=>`layers/${n}.webp`;
+const LAYERS=[ // [image, size × S, z assembled, z exploded, label, sub, extra css]
+  ['board',1.68,0,0,'Served on oak','straight from the oven'],
+  ...Array.from({length:6},(_,i)=>['base',1,2+i*1.3,46+i*2.2,null,null,'filter:brightness(.42) saturate(1.2)']),
+  ['base',1,10,60,'48-hour dough','fermented slow, stretched by hand'],
+  ['sauce',.82,11,150,'San Marzano sauce','crushed fresh every morning'],
+  ['cheese',.84,12,240,'Akkawi + mozzarella','the Beirut twist'],
+  ['toppings',.86,13,330,'Fresh toppings','basil · olives · pepperoni'],
+  ['whole',1.0,14,14]];
+const pizza=document.getElementById('pizza'),tagsEl=document.getElementById('tags'),els=[],tags=[];
+LAYERS.forEach((L,i)=>{const d=document.createElement('div');d.className='layer';
+  const sz=L[1]*100;d.innerHTML=`<img src="${IMG(L[0])}" alt="" style="position:absolute;width:${sz}%;height:${sz}%;left:${(100-sz)/2}%;top:${(100-sz)/2}%;${L[6]||''}">`;
+  pizza.appendChild(d);els.push(d);
+  if(L[4]){const t=document.createElement('div');t.className='tag';t.innerHTML=`<b>${tags.length+1}</b><div>${L[4]}<small>${L[5]}</small></div>`;tagsEl.appendChild(t);tags.push([t,i])}});
+const WHOLE=els[els.length-1];
+
+/* floating ingredients (parallax) */
+const floats=[];
+[['f-basil1',.06,.30,64,-.7],['f-tomato1',.80,.22,58,.9],['f-basil2',.84,.70,66,-1.2],['f-tomato2',.03,.80,54,1.1],['f-pep',.72,.92,52,-.5],['f-basil3',.40,.10,50,.8]]
+ .forEach(([n,x,y,size,sp])=>{const f=document.createElement('div');f.className='float';f.style.width=f.style.height=size+'px';
+   f.innerHTML=`<img src="${IMG(n)}" alt="" style="width:100%;height:100%;-webkit-mask-image:radial-gradient(circle,#000 52%,transparent 68%);mask-image:radial-gradient(circle,#000 52%,transparent 68%);filter:drop-shadow(0 8px 10px rgba(0,0,0,.5))">`;
+   document.getElementById('stage').appendChild(f);floats.push([f,x,y,sp])});
+
+/* menu */
+[['Margherita','San Marzano, mozzarella, basil','$9',0],['Beirut Akkawi','Akkawi, za\'atar oil, olives','$11',90],
+ ['Pepperoni','Beef pepperoni, mozzarella','$12',180],['Garden','Mushrooms, tomatoes, olives','$10',270]]
+ .forEach(([n,d,p,r])=>{document.getElementById('menuGrid').insertAdjacentHTML('beforeend',
+  `<div class="card"><div class="img"><img src="${IMG('whole')}" alt="${n} pizza" style="width:88%;transform:rotate(${r}deg)"></div><h4>${n}</h4><p>${d}</p><div class="row"><span class="price">${p}</span><span class="add">+</span></div></div>`)});
+
+/* ---------- scroll animation ---------- */
+const hero=document.getElementById('hero'),head=document.getElementById('head'),ready=document.getElementById('ready'),hint=document.getElementById('hint'),shadow=document.getElementById('shadow');
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)),ease=x=>{x=clamp(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2},seg=(p,a,b)=>ease((p-a)/(b-a));
+let S=340;
+function size(){S=Math.min(window.innerWidth*.8,340,window.innerHeight*.42);document.documentElement.style.setProperty('--S',S+'px')}
+window.__time=null; // reel recorder overrides time
+function update(){
+  const vh=window.innerHeight,max=hero.offsetHeight-vh,p=clamp(window.scrollY/max);
+  const t=(window.__time!=null?window.__time:performance.now()/1000);
+  const k=S/340;
+  const ex=seg(p,.12,.5)*(1-seg(p,.74,.92));        // explode amount
+  const flat=seg(p,.78,.96);                          // reassemble to top view
+  const tilt=58+10*ex-58*flat;
+  const spin=t*14+p*320;
+  const lift=ex*vh*.15+flat*-vh*.02;
+  const sc=1+flat*.18;
+  pizza.style.transform=`translateY(${lift}px) rotateX(${tilt}deg) rotateZ(${spin}deg) scale(${sc})`;
+  els.forEach((e,i)=>{const L=LAYERS[i],z=(L[2]+(L[3]-L[2])*ex)*k;e.style.transform=`translateZ(${z}px)`});
+  WHOLE.style.opacity=Math.max(1-seg(p,.12,.2),seg(p,.76,.84));
+  shadow.style.transform=`translateY(${lift+S*.18}px) scale(${1.15-ex*.35},${(.45+flat*.55)*(1-ex*.3)})`;shadow.style.opacity=.9-ex*.4;
+  head.style.opacity=1-seg(p,.05,.16);head.style.transform=`translateY(${-seg(p,.05,.16)*40}px)`;
+  hint.style.opacity=1-seg(p,0,.06);
+  // tags: approximate projected height of each layer
+  const cy=vh*.62+lift,stepIn=[.2,.27,.34,.41,.48];
+  tags.forEach(([el,i],n)=>{const L=LAYERS[i],z=(L[2]+(L[3]-L[2])*ex)*k;
+    const y=cy-z*Math.sin(tilt*Math.PI/180)*1.05;
+    const a=clamp((p-stepIn[n])/.05)*(1-seg(p,.7,.78));
+    const left=n%2===0;el.style.top=(y-18)+'px';
+    el.style.left=left?'4%':'auto';el.style.right=left?'auto':'4%';
+    el.style.opacity=a;el.style.transform=`translateX(${(1-a)*(left?-24:24)}px)`});
+  ready.style.opacity=seg(p,.86,.96);ready.style.transform=`translateY(${(1-seg(p,.86,.96))*24}px)`;
+  floats.forEach(([f,x,y,sp])=>{f.style.left=(x*100)+'%';f.style.top=(y*vh-p*vh*.9*Math.abs(sp)+Math.sin(t*.8+sp*3)*8)+'px';f.style.transform=`rotate(${t*20*sp+p*200*sp}deg)`});
+}
+size();update();
+window.addEventListener('resize',()=>{size();update()});
+window.addEventListener('scroll',update,{passive:true});
+(function loop(){update();requestAnimationFrame(loop)})();
+</script>
+</body>
+</html>
