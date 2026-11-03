@@ -326,6 +326,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         <div><label for="fContact">WhatsApp or Instagram</label><input id="fContact" name="contact" placeholder="+961… or @handle" required></div>
         <button class="btn btn-hot" type="submit" style="justify-content:center;margin-top:8px">Send me my mockup</button>
         <p id="formNote" role="status"></p>
+        <p class="meta" style="text-align:center">Or email <b>websiteweaver0@gmail.com</b></p>
       </form>
     </div>
   </section>
@@ -360,10 +361,13 @@ renderPlans('web');
 /* form (preview) */
 document.getElementById('leadForm').addEventListener('submit',e=>{
   e.preventDefault();
-  const f=e.target, ok=[...f.querySelectorAll('[required]')].every(i=>i.value.trim());
-  document.getElementById('formNote').textContent= ok
-    ? "Thanks! This is a preview, so nothing was sent. On the live site this goes straight to Elissa."
-    : "Please fill in your name, business and WhatsApp or Instagram.";
+  const f=e.target, v=id=>document.getElementById(id).value.trim();
+  const ok=[...f.querySelectorAll('[required]')].every(i=>i.value.trim());
+  const note=document.getElementById('formNote');
+  if(!ok){note.textContent="Please fill in your name, business and WhatsApp or Instagram.";return;}
+  const body=`Hi Elissa,\n\nName: ${v('fName')}\nBusiness: ${v('fBiz')}\nI need: ${v('fWant')}\nWhatsApp / Instagram: ${v('fContact')}\n\nPlease send me my free mockup.`;
+  location.href='mailto:websiteweaver0@gmail.com?subject='+encodeURIComponent('Free mockup request: '+v('fBiz'))+'&body='+encodeURIComponent(body);
+  note.textContent="Your email app should open with everything filled in. Just press send. If it doesn't, email websiteweaver0@gmail.com or DM @website.weaver.";
 });
 
 /* reveal: content starts visible; only elements below the fold get the pre state */
@@ -487,7 +491,7 @@ const K=[
  {k:[0,0,2.2,0,.45],    l:[0,-6.5,.6,0],      lid:1.57, p:[0,-7,.8,0],        s:3},
  {k:[0,0,2.6,0,.3],     l:[0,-6.5,.6,0],      lid:1.57, p:[0,-7,.8,0],        s:3},
  {k:[0,0,2.6,0,.3],     l:[0,-6.5,.6,0],      lid:1.57, p:[0,-7,.8,0],        s:3},
- {k:[0,.4,1.4,0,1],     l:[0,-6.5,.6,0],      lid:1.57, p:[0,-7,.8,0],        s:3},
+ {k:[0,-2.6,1.1,0,.3],     l:[0,-6.5,.6,0],      lid:1.57, p:[0,-7,.8,0],        s:3},
 ];
 const stages=[...document.querySelectorAll('[data-stage]')];
 let mobile=false;
