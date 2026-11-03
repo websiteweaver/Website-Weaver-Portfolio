@@ -22,6 +22,7 @@
   color-scheme:dark;
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth}
 body{background:var(--night);color:var(--ink);font:400 17px/1.6 var(--body);overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--night)}
@@ -148,6 +149,12 @@ label{font:500 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
 input,select{width:100%;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:rgba(7,8,22,.7);color:var(--ink);font:500 16px var(--body)}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .form-row>div,form>div{display:grid;gap:6px;min-width:0}
+
+textarea{width:100%;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:rgba(7,8,22,.7);color:var(--ink);font:500 16px var(--body);resize:vertical}
+.thanks{max-width:520px;margin:30px auto 0;padding:34px 26px;border:1px solid var(--line);border-radius:20px;background:rgba(14,22,48,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:grid;gap:14px;justify-items:center;text-align:center}
+.thanks .tick{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-size:28px;color:#fff;background:linear-gradient(135deg,var(--violet),var(--pink))}
+.thanks p{margin:0;color:var(--mist)}
+button:disabled{opacity:.6;cursor:wait}
 #formNote{min-height:1.4em;color:var(--lilac);font-size:14px;margin:4px 0 0}
 footer{border-top:1px solid var(--line);padding-block:28px;color:var(--mist);font-size:14px}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
@@ -317,17 +324,42 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       <p class="lead">Tell me what you do and I'll send a quick concept of your website or app. No commitment.</p>
       <div class="cta-row" style="justify-content:center"><a class="btn btn-ghost" href="https://instagram.com/website.weaver" target="_blank" rel="noopener">DM @website.weaver</a></div>
       <form id="leadForm" novalidate>
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
         <div class="form-row">
-          <div><label for="fName">Your name</label><input id="fName" name="name" autocomplete="name" required></div>
-          <div><label for="fBiz">Business</label><input id="fBiz" name="business" placeholder="e.g. café in Hamra" required></div>
+          <div><label for="fName">Your name *</label><input id="fName" name="Name" autocomplete="name" required></div>
+          <div><label for="fBiz">Business name *</label><input id="fBiz" name="Business" required></div>
         </div>
-        <div><label for="fWant">I need</label>
-          <select id="fWant" name="need"><option>A website</option><option>A mobile app</option><option>A 3D website</option><option>Not sure yet</option></select></div>
-        <div><label for="fContact">WhatsApp or Instagram</label><input id="fContact" name="contact" placeholder="+961… or @handle" required></div>
-        <button class="btn btn-hot" type="submit" style="justify-content:center;margin-top:8px">Send me my mockup</button>
+        <div class="form-row">
+          <div><label for="fType">Type of business</label>
+            <select id="fType" name="Business type"><option>Café / restaurant</option><option>Clinic / health</option><option>Salon / beauty</option><option>Shop / boutique</option><option>Real estate / interiors</option><option>Hotel / guesthouse</option><option>Other</option></select></div>
+          <div><label for="fCity">City / country *</label><input id="fCity" name="Location" placeholder="e.g. Beirut, Dubai" required></div>
+        </div>
+        <div class="form-row">
+          <div><label for="fWant">I need</label>
+            <select id="fWant" name="Needs"><option>A website</option><option>A 3D website</option><option>A mobile app</option><option>Website + app</option><option>Redesign of my current site</option><option>Not sure yet</option></select></div>
+          <div><label for="fBudget">Budget</label>
+            <select id="fBudget" name="Budget"><option>Under $500</option><option>$500 – $1,000</option><option>$1,000 – $2,500</option><option>$2,500+</option><option>Not sure yet</option></select></div>
+        </div>
+        <div class="form-row">
+          <div><label for="fWhen">When do you want it?</label>
+            <select id="fWhen" name="Timeline"><option>As soon as possible</option><option>Within a month</option><option>In 1–3 months</option><option>Just exploring</option></select></div>
+          <div><label for="fLink">Current website or Instagram</label><input id="fLink" name="Current link" placeholder="@yourbrand or yoursite.com"></div>
+        </div>
+        <div class="form-row">
+          <div><label for="fContact">WhatsApp number *</label><input id="fContact" name="WhatsApp" type="tel" placeholder="+961…" required></div>
+          <div><label for="fEmail">Email *</label><input id="fEmail" name="Email" type="email" placeholder="you@business.com" required></div>
+        </div>
+        <div><label for="fMsg">Tell me about your project</label><textarea id="fMsg" name="Project details" rows="4" placeholder="What do you sell, who are your customers, any sites you like?"></textarea></div>
+        <button class="btn btn-hot" type="submit" id="fSend" style="justify-content:center;margin-top:8px">Send me my mockup</button>
         <p id="formNote" role="status"></p>
         <p class="meta" style="text-align:center">Or email <b>websiteweaver0@gmail.com</b></p>
       </form>
+      <div id="thanks" class="thanks" hidden>
+        <div class="tick">✓</div>
+        <h3>Thank you, <span id="tName">friend</span>!</h3>
+        <p>Your request is in. I'll look at your business and send your free mockup on WhatsApp within 48 hours.</p>
+        <a class="btn btn-ghost" href="https://instagram.com/website.weaver" target="_blank" rel="noopener">Meanwhile, see my work on Instagram</a>
+      </div>
     </div>
   </section>
 </main>
@@ -359,15 +391,26 @@ document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',
 renderPlans('web');
 
 /* form (preview) */
-document.getElementById('leadForm').addEventListener('submit',e=>{
+document.getElementById('leadForm').addEventListener('submit',async e=>{
   e.preventDefault();
-  const f=e.target, v=id=>document.getElementById(id).value.trim();
-  const ok=[...f.querySelectorAll('[required]')].every(i=>i.value.trim());
-  const note=document.getElementById('formNote');
-  if(!ok){note.textContent="Please fill in your name, business and WhatsApp or Instagram.";return;}
-  const body=`Hi Elissa,\n\nName: ${v('fName')}\nBusiness: ${v('fBiz')}\nI need: ${v('fWant')}\nWhatsApp / Instagram: ${v('fContact')}\n\nPlease send me my free mockup.`;
-  location.href='mailto:websiteweaver0@gmail.com?subject='+encodeURIComponent('Free mockup request: '+v('fBiz'))+'&body='+encodeURIComponent(body);
-  note.textContent="Your email app should open with everything filled in. Just press send. If it doesn't, email websiteweaver0@gmail.com or DM @website.weaver.";
+  const f=e.target, note=document.getElementById('formNote'), btn=document.getElementById('fSend');
+  const bad=[...f.querySelectorAll('[required]')].filter(i=>!i.value.trim()||(i.type==='email'&&!/^\S+@\S+\.\S+$/.test(i.value)));
+  if(bad.length){note.textContent='Please fill in: '+bad.map(i=>f.querySelector(`label[for="${i.id}"]`).textContent.replace(' *','')).join(', ')+'.';bad[0].focus();return;}
+  const data=Object.fromEntries(new FormData(f).entries());
+  if(data._honey) return;
+  delete data._honey;
+  data._subject='New mockup request: '+data.Business; data._template='table'; data._replyto=data.Email; data._captcha='false';
+  btn.disabled=true; btn.textContent='Sending…'; note.textContent='';
+  try{
+    const r=await fetch('https://formsubmit.co/ajax/websiteweaver0@gmail.com',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(data)});
+    const j=await r.json().catch(()=>({}));
+    if(!r.ok||j.success==='false'||j.success===false) throw new Error(j.message||'send failed');
+    document.getElementById('tName').textContent=data.Name.split(' ')[0];
+    f.hidden=true; document.getElementById('thanks').hidden=false;
+  }catch(err){
+    btn.disabled=false; btn.textContent='Send me my mockup';
+    note.textContent="That didn't go through. Please try again, or email websiteweaver0@gmail.com or DM @website.weaver.";
+  }
 });
 
 /* reveal: content starts visible; only elements below the fold get the pre state */
