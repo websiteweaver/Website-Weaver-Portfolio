@@ -399,21 +399,21 @@ document.getElementById('leadForm').addEventListener('submit',async e=>{
   const data=Object.fromEntries(new FormData(f).entries());
   if(data._honey) return;
   delete data._honey;
-  data._subject='New mockup request: '+data.Business; data._template='table'; data._replyto=data.Email; data._captcha='false';
+  data.access_key='c206c804-9bb3-49e3-9b08-211899ef32a6'; data.subject='New mockup request: '+data.Business; data.from_name='Website Weaver site'; data.replyto=data.Email;
   btn.disabled=true; btn.textContent='Sending…'; note.textContent='';
   const thank=()=>{document.getElementById('tName').textContent=data.Name.split(' ')[0];f.hidden=true;document.getElementById('thanks').hidden=false;};
   const ctl=new AbortController(); const timer=setTimeout(()=>ctl.abort(),12000);
   try{
-    const r=await fetch('https://formsubmit.co/ajax/websiteweaver0@gmail.com',{method:'POST',signal:ctl.signal,headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(data)});
+    const r=await fetch('https://api.web3forms.com/submit',{method:'POST',signal:ctl.signal,headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(data)});
     clearTimeout(timer);
     const j=await r.json().catch(()=>({}));
-    if(r.ok && (j.success===true||j.success==='true'||/activat/i.test(j.message||''))) return thank();
+    if(r.ok && (j.success===true||j.success==='true')) return thank();
     throw new Error(j.message||'send failed');
   }catch(err){
     clearTimeout(timer);
     btn.disabled=false; btn.textContent='Send me my mockup';
-    const body=Object.entries(data).filter(([k])=>!k.startsWith('_')).map(([k,v])=>k+': '+v).join('\n');
-    note.innerHTML='That took too long. <a href="mailto:websiteweaver0@gmail.com?subject='+encodeURIComponent(data._subject)+'&body='+encodeURIComponent(body)+'">Tap here to send it by email instead</a>, or DM @website.weaver.';
+    const body=Object.entries(data).filter(([k])=>!['access_key','subject','from_name','replyto'].includes(k)).map(([k,v])=>k+': '+v).join('\n');
+    note.innerHTML='That took too long. <a href="mailto:websiteweaver0@gmail.com?subject='+encodeURIComponent(data.subject)+'&body='+encodeURIComponent(body)+'">Tap here to send it by email instead</a>, or DM @website.weaver.';
   }
 });
 
