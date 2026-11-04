@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="../../favicon.png" type="image/png">
+<title>Najd Residence</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+*{box-sizing:border-box}html,body{margin:0}
+/* Layout: the real walk-through video plays inside a fixed framed window and is scrubbed by scroll (frame sequence on a canvas, so it works on iPhone too). Text sits beside the window on desktop, over the video on phones. One committed palette per brand. */
+:root{--bg:#191714;--fg:#efe6d8;--accent:#d39b5a;--muted:#b9ab97;--ink:#191714;--line:rgba(239,230,216,.2);--glow:#3a2c1e;--scrim:rgba(25,23,20,.9);
+ --f-display:"Tenor Sans",Georgia,serif;--f-body:"Inter Tight",system-ui,-apple-system,"Segoe UI",sans-serif;--f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;color-scheme:dark}
+html,body{background:var(--bg);color:var(--fg)}
+body{font-family:var(--f-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.track{height:900vh}
+.bg{position:fixed;inset:0;z-index:0;overflow:hidden;background:radial-gradient(ellipse at 70% 40%,var(--glow),var(--bg) 70%)}
+.bg canvas{position:absolute;inset:-10%;width:120%;height:120%;filter:blur(46px) saturate(1.15) brightness(.5);opacity:.9}
+.frame{position:fixed;z-index:1;right:6vw;top:7vh;height:86vh;aspect-ratio:9/16;max-width:46vw;overflow:hidden;border-radius:6px;box-shadow:0 40px 120px rgba(0,0,0,.55),0 0 0 1px var(--line);background:var(--glow)}
+.frame canvas{position:absolute;inset:0;width:100%;height:100%}
+.load{position:fixed;z-index:6;right:16px;bottom:calc(14px + env(safe-area-inset-bottom,0px));font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;color:var(--muted);transition:opacity .6s}
+header{position:fixed;top:0;left:0;right:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:calc(14px + env(safe-area-inset-top,0px));padding-bottom:14px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.mark{font-family:var(--f-display);font-size:20px;letter-spacing:.04em;color:var(--fg);text-decoration:none}
+.mark small{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-left:10px;vertical-align:middle;border:1px solid var(--accent);padding:2px 6px;border-radius:3px}
+.book-top{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:var(--fg);border:0;border-radius:999px;padding:9px 16px;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.chapter{position:fixed;z-index:4;left:max(6vw,16px);top:50%;transform:translateY(calc(-50% + 18px));width:min(36vw,30rem);opacity:0;transition:opacity .5s ease,transform .6s cubic-bezier(.2,.7,.2,1);pointer-events:none}
+.chapter.on{opacity:1;transform:translateY(-50%);pointer-events:auto}
+.eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);display:flex;gap:10px;align-items:center}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--accent)}
+.chapter h2{font-family:var(--f-display);font-weight:400;font-size:clamp(34px,4.4vw,60px);line-height:1.04;margin:.35em 0 .3em;text-wrap:balance}
+.chapter h1{font-family:var(--f-display);font-weight:400;font-size:clamp(52px,7.2vw,112px);line-height:.95;margin:.18em 0 .22em}
+.chapter p{margin:0;max-width:34ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:14px;font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.facts b{color:var(--fg);font-weight:500}
+.cue{margin-top:22px;font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.cue i{width:1px;height:34px;background:linear-gradient(var(--fg),transparent);animation:drip 1.8s ease-in-out infinite}
+@keyframes drip{0%{transform:scaleY(.2);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}100%{transform:scaleY(.2);transform-origin:bottom}}
+.rates{max-width:24rem;display:grid;grid-template-columns:1fr auto;gap:6px 24px;margin:16px 0 18px;font-family:var(--f-mono);font-size:13px;border-top:1px solid var(--line);padding-top:12px}
+.rates span:nth-child(even){color:var(--accent);text-align:right;font-variant-numeric:tabular-nums}
+.cta{font-family:var(--f-body);font-weight:600;font-size:15px;color:var(--ink);background:var(--accent);border:0;border-radius:999px;padding:14px 22px;cursor:pointer}
+.note{font-size:13px;color:var(--muted);margin-top:10px;min-height:1.4em}
+.bar{position:fixed;z-index:4;left:0;right:0;bottom:0;height:3px;background:var(--line)}
+.bar i{display:block;height:100%;width:0;background:var(--accent)}
+.credit{position:fixed;z-index:4;bottom:calc(14px + env(safe-area-inset-bottom,0px));left:max(16px,env(safe-area-inset-left,0px));font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;color:var(--muted)}
+.credit a{color:var(--fg)}
+.scrim{display:none}
+@media (max-width:760px){
+ .frame{inset:0;height:100%;width:100%;max-width:none;aspect-ratio:auto;border-radius:0;box-shadow:none}
+ .scrim{display:block;position:fixed;inset:auto 0 0 0;height:60vh;z-index:2;background:linear-gradient(to top,var(--scrim) 30%,transparent);pointer-events:none}
+ .scrim.top{inset:0 0 auto 0;height:20vh;background:linear-gradient(to bottom,var(--scrim),transparent)}
+ .chapter{top:auto;bottom:calc(54px + env(safe-area-inset-bottom,0px));left:max(16px,env(safe-area-inset-left,0px));right:max(16px,env(safe-area-inset-right,0px));width:auto;transform:translateY(18px)}
+ .chapter.on{transform:none} .chapter p{font-size:15px} .load{bottom:auto;top:calc(58px + env(safe-area-inset-top,0px))}
+}
+@media (prefers-reduced-motion:reduce){.chapter{transition:opacity .2s}.cue i{animation:none}}
+</style>
+</head><body>
+<div class="bg"><canvas id="blur" width="36" height="64"></canvas></div>
+<div class="frame"><canvas id="cv" role="img" aria-label="A rise from the tower entrance into a living room, kitchen and a suite with a terrace pool"></canvas></div>
+<div class="scrim"></div><div class="scrim top"></div>
+<header><a class="mark" href="#top">Najd Residence<small>Concept</small></a><button class="book-top" type="button" id="bookTop">Book</button></header>
+<section class="chapter on" data-from="0" data-to="0.1"><div class="eyebrow">Show apartment · North Riyadh</div><h1>Najd<br>Residence</h1><p>Residences with Najdi details, city views and a private terrace. Walk through the show apartment.</p><div class="cue"><i></i>Scroll to go up</div></section>
+<section class="chapter" data-from="0.210" data-to="0.380"><div class="eyebrow">The living room</div><h2>Light all day, skyline at night</h2><p>Floor-to-ceiling glass facing the city, and lime plaster walls with a Najdi relief.</p><div class="facts"><span><b>Area</b> 212 m²</span><span><b>Floor</b> 23</span></div></section>
+<section class="chapter" data-from="0.460" data-to="0.630"><div class="eyebrow">Kitchen and majlis</div><h2>Room for the whole family</h2><p>A travertine island for weekday breakfasts and a lounge for guests at the weekend.</p><div class="facts"><span><b>Bedrooms</b> 3</span><span><b>Parking</b> 2 spaces</span></div></section>
+<section class="chapter" data-from="0.710" data-to="0.860"><div class="eyebrow">The master suite</div><h2>Your own terrace and plunge pool</h2><p>The suite opens straight onto a private terrace above the city.</p><div class="facts"><span><b>Handover</b> Q4 2027</span></div></section>
+<section class="chapter" data-from="0.88" data-to="1.01"><div class="eyebrow">Example prices</div><h2>Book a private viewing</h2><div class="rates"><span>2 bedrooms, from</span><span>SAR 2.4M</span><span>3 bedrooms, from</span><span>SAR 3.6M</span><span>Penthouse</span><span>on request</span></div><button class="cta" id="cta" type="button">Book a viewing</button><div class="note" id="note" role="status"></div></section>
+<div class="credit">Concept site by <a href="https://www.instagram.com/website.weaver/" target="_blank" rel="noopener">Website Weaver</a></div>
+<div class="load" id="load">Loading the walk-through…</div>
+<div class="bar"><i id="bar"></i></div>
+<div class="track" id="top"></div>
+<script>
+const N=181,P0=0.05,P1=0.8,PACKS=3;
+const cv=document.getElementById('cv'),cx=cv.getContext('2d'),bl=document.getElementById('blur'),bx=bl.getContext('2d');
+const chapters=[...document.querySelectorAll('.chapter')],bar=document.getElementById('bar'),load=document.getElementById('load');
+const frames=new Array(N);let loaded=0,drawn=-1,target=0,cur=0;
+// frames ship as a few JSON packs of base64 webp; each pack is decoded as soon as it arrives
+async function pack(k){const r=await fetch('frames/pack'+k+'.json');const j=await r.json();
+ j.f.forEach((b,x)=>{const im=new Image();im.onload=()=>{frames[j.start+x]=im;loaded++;drawn=-1;load.textContent='Loading the walk-through '+Math.round(loaded/N*100)+'%';if(loaded===N)load.style.opacity=0};im.src='data:image/webp;base64,'+b})}
+(async()=>{for(let k=0;k<PACKS;k++){try{await pack(k)}catch(e){load.textContent='Could not load the video. Refresh to try again.'}}})();
+function nearest(i){for(let d=0;d<N;d++){if(frames[i-d])return frames[i-d];if(frames[i+d])return frames[i+d]}return null}
+function size(){const r=cv.getBoundingClientRect(),d=Math.min(2,devicePixelRatio||1);cv.width=Math.round(r.width*d);cv.height=Math.round(r.height*d);drawn=-1}
+addEventListener('resize',size);size();
+function read(){const m=document.documentElement.scrollHeight-innerHeight;target=m>0?Math.min(1,Math.max(0,scrollY/m)):0}
+addEventListener('scroll',read,{passive:true});read();cur=target;
+function draw(fi){const im=nearest(fi);if(!im)return;const W=cv.width,H=cv.height,s=Math.max(W/im.width,H/im.height),w=im.width*s,h=im.height*s;
+ cx.drawImage(im,(W-w)/2,(H-h)/2,w,h);bx.drawImage(im,0,0,36,64)}
+function tick(){cur+=(target-cur)*.12;const t=Math.min(1,Math.max(0,(cur-P0)/(P1-P0))),fi=Math.round(t*(N-1));
+ if(fi!==drawn){draw(fi);if(frames[fi])drawn=fi}
+ chapters.forEach(c=>c.classList.toggle('on',cur>=+c.dataset.from&&cur<+c.dataset.to));bar.style.width=(cur*100).toFixed(2)+'%';requestAnimationFrame(tick)}
+tick();
+document.getElementById('bookTop').addEventListener('click',()=>{const m=document.documentElement.scrollHeight-innerHeight;scrollTo({top:m,behavior:'smooth'})});
+document.getElementById('cta').addEventListener('click',()=>{document.getElementById('note').textContent='This is a concept site by Website Weaver. On a live site this opens the sales team WhatsApp.'});
+window.__setP=p=>{target=cur=p};
+</script>
+
+</body></html>
