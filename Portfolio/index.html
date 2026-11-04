@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-/* Layout: a fixed full-screen film of the Weaver Studio (real video, scrubbed by scroll, projects on the screens); text alternates sides so each subject has room. */
+/* Layout: a fixed WebGL stage (woven web + laptop + phone) behind scrolling chapters; text alternates sides so the 3D object always has room. */
 :root{
   --night:#070816; --navy:#0E1630; --ink:#F4F1FF; --mist:#A9A6C9;
   --violet:#7B2FF7; --lilac:#C9B6FF; --pink:#FF3D8B; --cyan:#00D4FF;
@@ -26,8 +26,7 @@
 html{scroll-behavior:smooth}
 body{background:var(--night);color:var(--ink);font:400 17px/1.6 var(--body);overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--night)}
-#stage{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block;background:var(--night)}
-.loadnote{position:fixed;z-index:3;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));font:500 10.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mist);transition:opacity .6s;pointer-events:none}
+#stage{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
 .vignette{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 50% 40%,transparent 40%,rgba(7,8,22,.75) 100%)}
 main,header,footer{position:relative;z-index:2}
 .wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
@@ -160,7 +159,6 @@ button:disabled{opacity:.6;cursor:wait}
 footer{border-top:1px solid var(--line);padding-block:28px;color:var(--mist);font-size:14px}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 
-.chapter .panel{text-shadow:0 2px 18px rgba(7,8,22,.8)}
 .reveal{transition:opacity .8s,transform .8s}
 .reveal.pre{opacity:.001;transform:translateY(30px)}
 
@@ -185,7 +183,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 </head>
 <body>
 <canvas id="stage" aria-hidden="true"></canvas>
-<div class="loadnote" id="loadnote">Loading the studio…</div>
 <div class="vignette"></div>
 
 <header>
@@ -212,7 +209,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         <a class="btn btn-ghost" href="#pricing">See packages</a>
       </div>
       <div class="chips"><span>From $300</span><span>Pay in installments</span><span>English &amp; عربي</span></div>
-      <div class="scroll-hint"><i></i>Scroll to walk into the studio</div>
+      <div class="scroll-hint"><i></i>Scroll to open the laptop</div>
     </div></div>
   </section>
 
@@ -258,15 +255,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
   </section>
 
 
-
-  <section class="more" id="walk-in" data-stage="4">
-    <div class="wrap">
-      <span class="eyebrow">Walk-in 3D websites</span>
-      <h2 style="margin:14px 0 14px">Walk in before <span class="grad">you visit.</span></h2>
-      <p class="lead" style="margin-bottom:30px">Real video of the space plays as you scroll, door to last room, then the booking button. Made for guesthouses, clinics, boutiques and real estate.</p>
-      <div class="grid"><a class="mini" href="concepts/dar-batroun/" target="_blank" rel="noopener"><div class="cover"><img src="covers/dar-batroun.webp" alt="Dar Batroun walk-in concept website" loading="lazy" width="1280" height="800"><span class="tag">Concept · Walk-in</span></div><h3>Dar Batroun</h3><span class="meta">Guesthouse · Batroun</span></a><a class="mini" href="concepts/lumi-dental/" target="_blank" rel="noopener"><div class="cover"><img src="covers/lumi-dental.webp" alt="Lumi Dental Studio walk-in concept website" loading="lazy" width="1280" height="800"><span class="tag">Concept · Walk-in</span></div><h3>Lumi Dental Studio</h3><span class="meta">Clinic · Jumeirah, Dubai</span></a><a class="mini" href="concepts/bayt-al-oud/" target="_blank" rel="noopener"><div class="cover"><img src="covers/bayt-al-oud.webp" alt="Bayt Al Oud walk-in concept website" loading="lazy" width="1280" height="800"><span class="tag">Concept · Walk-in</span></div><h3>Bayt Al Oud</h3><span class="meta">Perfume house · Doha</span></a><a class="mini" href="concepts/najd-residence/" target="_blank" rel="noopener"><div class="cover"><img src="covers/najd-residence.webp" alt="Najd Residence walk-in concept website" loading="lazy" width="1280" height="800"><span class="tag">Concept · Walk-in</span></div><h3>Najd Residence</h3><span class="meta">Show apartment · Riyadh</span></a></div>
-    </div>
-  </section>
 
   <section class="more" data-stage="4">
     <div class="wrap">
@@ -436,35 +424,181 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObser
 }
 </script>
 
-<script>
-/* The Weaver Studio film: 4 real clips (entrance knot, hall of project screens, featured screen, giant phone)
-   shipped as frame packs and drawn on a canvas, so scrubbing by scroll works on every phone. */
-(()=>{
-const N=241, PACKS=4, cv=document.getElementById('stage'), cx=cv.getContext('2d'), note=document.getElementById('loadnote');
-const frames=new Array(N); let loaded=0, drawn=-1, cur=0, target=0;
-async function pack(k){const r=await fetch('studio/pack'+k+'.json');const j=await r.json();
-  j.f.forEach((b,x)=>{const im=new Image();im.onload=()=>{frames[j.start+x]=im;loaded++;drawn=-1;
-    if(loaded===N)note.style.opacity=0;else note.textContent='Loading the studio '+Math.round(loaded/N*100)+'%'};im.src='data:image/webp;base64,'+b})}
-(async()=>{for(let k=0;k<PACKS;k++){try{await pack(k)}catch(e){note.textContent=''}}})();
-function size(){const d=Math.min(2,devicePixelRatio||1);cv.width=Math.round(innerWidth*d);cv.height=Math.round(innerHeight*d);drawn=-1}
-addEventListener('resize',size);size();
-/* scroll anchors: section -> frame. hall of screens under Work, featured screen under Walk-in, phone under Apps */
-const A=[['#top',0],['#services',40],['#work',62],['#walk-in',118],['#apps',200],['#pricing',215],['#contact',240]];
-let pts=[];
-function measure(){pts=A.map(([s,f])=>{const el=document.querySelector(s);return [el?el.getBoundingClientRect().top+scrollY-innerHeight*.35:0,f]});pts[0][0]=0;pts.sort((a,b)=>a[0]-b[0])}
-function frameAt(y){if(y<=pts[0][0])return pts[0][1];for(let i=1;i<pts.length;i++){if(y<=pts[i][0]){const[a,fa]=pts[i-1],[b,fb]=pts[i];return fa+(fb-fa)*((y-a)/(b-a||1))}}return pts[pts.length-1][1]}
-addEventListener('resize',measure);addEventListener('load',measure);measure();setTimeout(measure,1500);
-function nearest(i){for(let d=0;d<N;d++){if(frames[i-d])return frames[i-d];if(frames[i+d])return frames[i+d]}return null}
-const phone=()=>innerWidth<innerHeight;
-function draw(i){const im=nearest(i);if(!im)return;const W=cv.width,H=cv.height,s=Math.max(W/im.width,H/im.height),w=im.width*s,h=im.height*s;
-  /* on a portrait phone keep the walker and the featured screen in view: centre slightly right */
-  const ox=phone()?(W-w)*.55:(W-w)/2;cx.drawImage(im,ox,(H-h)/2,w,h)}
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+
+const canvas=document.getElementById('stage');
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-function tick(){target=frameAt(scrollY);cur+=(target-cur)*(reduce?1:.14);const fi=Math.max(0,Math.min(N-1,Math.round(cur)));
-  if(fi!==drawn){draw(fi);if(frames[fi])drawn=fi}requestAnimationFrame(tick)}
-tick();
-window.__ww={measure,frameAt};
-})();
+let renderer;
+try{ renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false}); }catch(e){ canvas.remove(); throw e; }
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.outputColorSpace=THREE.SRGBColorSpace;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+const scene=new THREE.Scene();
+scene.background=new THREE.Color('#070816');
+scene.fog=new THREE.Fog('#070816',9,22);
+const camera=new THREE.PerspectiveCamera(38,1,.1,60);
+camera.position.set(0,0,9);
+
+/* lights */
+scene.add(new THREE.AmbientLight('#8c86c9',.6));
+const key=new THREE.PointLight('#a855f7',40,30); key.position.set(-4,3,5); scene.add(key);
+const rim=new THREE.PointLight('#ff3d8b',30,30); rim.position.set(5,-2,3); scene.add(rim);
+const fill=new THREE.DirectionalLight('#ffffff',.9); fill.position.set(0,4,6); scene.add(fill);
+
+/* the woven web: a torus knot drawn as glowing threads */
+const knotGeo=new THREE.TorusKnotGeometry(1.25,.42,260,18,2,3);
+const wire=new THREE.WireframeGeometry(knotGeo);
+const threadMat=new THREE.ShaderMaterial({
+  transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+  uniforms:{uT:{value:0},uA:{value:1}},
+  vertexShader:`varying vec3 vP; void main(){ vP=position; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.); }`,
+  fragmentShader:`uniform float uT; uniform float uA; varying vec3 vP;
+    void main(){ float g=clamp((vP.x+vP.y)*.28+.5,0.,1.);
+      vec3 c=mix(vec3(.48,.18,.97),vec3(1.,.24,.55),g);
+      float pulse=.55+.45*sin(length(vP)*6.-uT*2.2);
+      gl_FragColor=vec4(c*(.6+pulse*.8),.16*uA*(.5+pulse)); }`
+});
+const knot=new THREE.Group();
+knot.add(new THREE.LineSegments(wire,threadMat));
+const dotGeo=new THREE.BufferGeometry().setAttribute('position',knotGeo.getAttribute('position'));
+const dotMat=new THREE.PointsMaterial({color:'#c9b6ff',size:.025,transparent:true,opacity:.7,blending:THREE.AdditiveBlending,depthWrite:false});
+knot.add(new THREE.Points(dotGeo,dotMat));
+scene.add(knot);
+
+/* star dust */
+{
+  const n=900,p=new Float32Array(n*3);
+  for(let i=0;i<n;i++){p[i*3]=(Math.random()-.5)*30;p[i*3+1]=(Math.random()-.5)*20;p[i*3+2]=-Math.random()*14-1;}
+  const g=new THREE.BufferGeometry().setAttribute('position',new THREE.BufferAttribute(p,3));
+  scene.add(new THREE.Points(g,new THREE.PointsMaterial({color:'#7f88ff',size:.03,transparent:true,opacity:.6})));
+}
+
+/* textures */
+const loader=new THREE.TextureLoader();
+function tex(src){const t=loader.load(src);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;return t;}
+const shots=[tex('coffee.webp'),tex('pizza.webp')];
+const phoneShots=[tex('coffee-ph.webp'),tex('pizza-ph.webp')];
+
+/* an app screen drawn in code (booking app concept) */
+function appScreen(){
+  const c=document.createElement('canvas');c.width=390;c.height=844;const x=c.getContext('2d');
+  const g=x.createLinearGradient(0,0,0,844);g.addColorStop(0,'#141a3a');g.addColorStop(1,'#0a0c1e');x.fillStyle=g;x.fillRect(0,0,390,844);
+  x.fillStyle='#c9b6ff';x.font='600 13px Manrope, sans-serif';x.fillText('GLOW CLINIC · CONCEPT',24,70);
+  x.fillStyle='#fff';x.font='800 34px Manrope, sans-serif';x.fillText('Book a visit',24,112);
+  const days=['Mon 9','Tue 10','Wed 11','Thu 12'];
+  days.forEach((d,i)=>{const X=24+i*86;x.fillStyle=i===1?'#ff3d8b':'rgba(255,255,255,.08)';rr(x,X,140,76,64,16);x.fill();
+    x.fillStyle='#fff';x.font='700 15px Manrope';x.fillText(d.split(' ')[0],X+18,168);x.font='800 20px Manrope';x.fillText(d.split(' ')[1],X+18,192);});
+  x.fillStyle='#a9a6c9';x.font='600 14px Manrope';x.fillText('Available times',24,250);
+  const times=['10:00','11:30','1:00','2:30','4:30','6:00'];
+  times.forEach((t,i)=>{const X=24+(i%3)*116,Y=268+Math.floor(i/3)*62;x.fillStyle=i===4?'#7b2ff7':'rgba(255,255,255,.07)';rr(x,X,Y,104,48,14);x.fill();
+    x.fillStyle='#fff';x.font='700 17px Manrope';x.textAlign='center';x.fillText(t,X+52,Y+30);x.textAlign='left';});
+  x.fillStyle='rgba(255,255,255,.06)';rr(x,24,420,342,150,20);x.fill();
+  x.fillStyle='#fff';x.font='800 18px Manrope';x.fillText('Teeth whitening',44,458);
+  x.fillStyle='#a9a6c9';x.font='500 15px Manrope';x.fillText('Dr. Rana · 45 min',44,486);x.fillText('Tue 10 Nov · 4:30 PM',44,512);
+  x.fillStyle='#c9b6ff';x.fillText('Reminder 1 hour before',44,546);
+  const b=x.createLinearGradient(24,0,366,0);b.addColorStop(0,'#7b2ff7');b.addColorStop(1,'#ff3d8b');x.fillStyle=b;rr(x,24,740,342,60,30);x.fill();
+  x.fillStyle='#fff';x.font='800 19px Manrope';x.textAlign='center';x.fillText('Confirm booking',195,777);
+  const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t;
+}
+function rr(x,a,b,w,h,r){x.beginPath();x.roundRect?x.roundRect(a,b,w,h,r):x.rect(a,b,w,h);}
+let appTex=appScreen();
+document.fonts&&document.fonts.ready.then(()=>{appTex=appScreen();});
+
+/* laptop */
+const metal=new THREE.MeshStandardMaterial({color:'#23253a',metalness:.85,roughness:.32});
+const laptop=new THREE.Group();
+const base=new THREE.Mesh(new THREE.BoxGeometry(3.3,.1,2.2),metal); laptop.add(base);
+const deck=new THREE.Mesh(new THREE.PlaneGeometry(2.9,1.1),new THREE.MeshStandardMaterial({color:'#11121f',roughness:.8}));
+deck.rotation.x=-Math.PI/2;deck.position.set(0,.051,-.35);laptop.add(deck);
+const keyGlow=new THREE.Mesh(new THREE.PlaneGeometry(2.7,.95),new THREE.MeshBasicMaterial({color:'#7b2ff7',transparent:true,opacity:.22}));
+keyGlow.rotation.x=-Math.PI/2;keyGlow.position.set(0,.053,-.35);laptop.add(keyGlow);
+const hinge=new THREE.Group(); hinge.position.set(0,.05,-1.1); laptop.add(hinge);
+const lid=new THREE.Mesh(new THREE.BoxGeometry(3.3,2.15,.07),metal); lid.position.set(0,1.075,-.035); hinge.add(lid);
+const screenMat=new THREE.MeshBasicMaterial({map:shots[0],toneMapped:false});
+const screen=new THREE.Mesh(new THREE.PlaneGeometry(3.08,1.925),screenMat); screen.position.set(0,1.09,.002); hinge.add(screen);
+scene.add(laptop);
+
+/* phone */
+const phone=new THREE.Group();
+const body=new THREE.Mesh(new THREE.BoxGeometry(1.02,2.12,.1),new THREE.MeshStandardMaterial({color:'#1b1d30',metalness:.9,roughness:.25}));
+phone.add(body);
+const phMat=new THREE.MeshBasicMaterial({map:phoneShots[0],toneMapped:false});
+const phScreen=new THREE.Mesh(new THREE.PlaneGeometry(.94,2.03),phMat); phScreen.position.z=.052; phone.add(phScreen);
+scene.add(phone);
+
+/* stage keyframes: k=knot, l=laptop, p=phone. [x,y,scale,rotY], lid = hinge angle (0 open, 1.57 closed) */
+const K=[
+ {k:[2.4,.1,1.55,0,1],  l:[2.4,-4.8,.7,-.4], lid:1.57, p:[3.6,-5.5,.6,-.3], s:0},
+ {k:[3.2,2.2,.55,0,.7], l:[2.2,-.35,1,-.45], lid:-.18, p:[3.95,-.55,.95,-.35], s:0},
+ {k:[-3.6,2.6,.45,0,.5],l:[2.1,-.1,1.12,-.38],lid:-.18, p:[3.85,-.45,1,-.28], s:0},
+ {k:[3.6,2.6,.45,0,.5], l:[-2.1,-.1,1.12,.38],lid:-.18, p:[-3.85,-.45,1,.28], s:1},
+ {k:[0,0,2.4,0,.35],    l:[0,-6.5,.6,0],      lid:1.57, p:[0,-7,.8,0],        s:1},
+ {k:[-3.2,-2.2,.6,0,.6],l:[-3.4,-3.6,.6,.5],  lid:1.2,  p:[-2.1,0,1.75,.25],  s:3},
+ {k:[0,0,2.2,0,.45],    l:[0,-6.5,.6,0],      lid:1.57, p:[0,-7,.8,0],        s:3},
+ {k:[0,0,2.6,0,.3],     l:[0,-6.5,.6,0],      lid:1.57, p:[0,-7,.8,0],        s:3},
+ {k:[0,0,2.6,0,.3],     l:[0,-6.5,.6,0],      lid:1.57, p:[0,-7,.8,0],        s:3},
+ {k:[0,-2.6,1.1,0,.3],     l:[0,-6.5,.6,0],      lid:1.57, p:[0,-7,.8,0],        s:3},
+];
+const stages=[...document.querySelectorAll('[data-stage]')];
+let mobile=false;
+function resize(){
+  const w=innerWidth,h=innerHeight; mobile=w<860;
+  renderer.setSize(w,h,false); camera.aspect=w/h;
+  camera.fov=mobile?50:38; camera.updateProjectionMatrix();
+}
+addEventListener('resize',resize); resize();
+
+/* where are we: index + fraction between stage tops (measured at 45% of viewport) */
+function progress(){
+  const mark=innerHeight*.45; let i=0;
+  for(let j=0;j<stages.length;j++){ if(stages[j].getBoundingClientRect().top<=mark) i=j; }
+  const a=stages[i].getBoundingClientRect().top, b=stages[i+1]?stages[i+1].getBoundingClientRect().top:a+1;
+  let f=stages[i+1]?(mark-a)/(b-a):0; f=Math.min(Math.max(f,0),1);
+  f=f<.55?0:(f-.55)/.45;                     /* hold, then glide into the next chapter */
+  f=f*f*(3-2*f);
+  return {i:+stages[i].dataset.stage, n:stages[i+1]?+stages[i+1].dataset.stage:+stages[i].dataset.stage, f};
+}
+const lerp=(a,b,t)=>a+(b-a)*t;
+const cur={k:[...K[0].k],l:[...K[0].l],lid:K[0].lid,p:[...K[0].p]};
+let shown=-1, mx=0, my=0;
+addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;});
+
+function place(v,mob){ /* on phones everything sits centred above the text panel */
+  if(!mob) return v;
+  return [v[0]*.18, v[1]<-4?-10:v[1]*.8+1.55, v[2]*.62, v[3]];
+}
+const clock=new THREE.Clock();
+function frame(){
+  const t=clock.getElapsedTime();
+  const {i,n,f}=progress(); const A=K[i]||K[0], B=K[n]||A;
+  const ease=reduce?1:.075;
+  for(const key of ['k','l','p']){
+    const tgt=place(A[key].map((x,j)=>lerp(x,B[key][j]??x,f)),mobile);
+    for(let j=0;j<tgt.length;j++) cur[key][j]=lerp(cur[key][j],tgt[j],ease);
+  }
+  cur.lid=lerp(cur.lid,lerp(A.lid,B.lid,f),ease*1.2);
+  const s=f>.5?B.s:A.s;
+  if(s!==shown){ shown=s; if(s<3){screenMat.map=shots[s];phMat.map=phoneShots[s];} else phMat.map=appTex; screenMat.needsUpdate=phMat.needsUpdate=true; }
+  if(s===3 && phMat.map!==appTex){phMat.map=appTex;phMat.needsUpdate=true;}
+
+  knot.position.set(cur.k[0],cur.k[1],-.6); knot.scale.setScalar(cur.k[2]);
+  knot.rotation.set(t*.07+my*.3, t*.11+mx*.4, t*.04);
+  threadMat.uniforms.uT.value=t; threadMat.uniforms.uA.value=cur.k[4]??1; dotMat.opacity=.7*(cur.k[4]??1);
+
+  const bob=reduce?0:Math.sin(t*1.1)*.06;
+  laptop.position.set(cur.l[0],cur.l[1]+bob,0); laptop.scale.setScalar(cur.l[2]);
+  laptop.rotation.set(.32+my*.12, cur.l[3]+mx*.25, 0);
+  hinge.rotation.x=cur.lid;
+  phone.position.set(cur.p[0],cur.p[1]-bob,1.1); phone.scale.setScalar(cur.p[2]);
+  phone.rotation.set(.08+my*.1, cur.p[3]+mx*.3+(reduce?0:Math.sin(t*.8)*.05), -.04);
+
+  camera.position.x=lerp(camera.position.x,mx*.5,.05); camera.position.y=lerp(camera.position.y,-my*.3,.05);
+  camera.lookAt(0,0,0);
+  renderer.render(scene,camera);
+  requestAnimationFrame(frame);
+}
+frame();
 </script>
 
 </body>
