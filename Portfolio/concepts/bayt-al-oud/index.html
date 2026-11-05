@@ -58,8 +58,8 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 <div class="scrim"></div><div class="scrim top"></div>
 <header><a class="mark" href="#top">Bayt Al Oud<small>Concept</small></a><button class="book-top" type="button" id="bookTop">Book</button></header>
 <section class="chapter on" data-from="0" data-to="0.1"><div class="eyebrow">Perfume house · Msheireb, Doha</div><h1>Bayt<br>Al Oud</h1><p>Oud, amber and rose, blended in Doha. Step through the bronze doors.</p><div class="cue"><i></i>Scroll to enter</div></section>
-<section class="chapter" data-from="0.210" data-to="0.380"><div class="eyebrow">The gallery</div><h2>A wall of scents</h2><p>Forty-two fragrances in backlit niches. Try any of them on a blotter or on your wrist.</p><div class="facts"><span><b>Samples</b> free in store</span><span><b>Families</b> 6</span></div></section>
-<section class="chapter" data-from="0.460" data-to="0.630"><div class="eyebrow">The signature</div><h2>Amber Majlis</h2><p>Cambodian oud, Taif rose and amber, aged for ninety days before bottling.</p><div class="facts"><span><b>Size</b> 100 ml</span><span><b>Lasts</b> 12+ hours</span></div></section>
+<section class="chapter" data-from="0.226" data-to="0.396"><div class="eyebrow">The gallery</div><h2>A wall of scents</h2><p>Forty-two fragrances in backlit niches. Try any of them on a blotter or on your wrist.</p><div class="facts"><span><b>Samples</b> free in store</span><span><b>Families</b> 6</span></div></section>
+<section class="chapter" data-from="0.489" data-to="0.659"><div class="eyebrow">The signature</div><h2>Amber Majlis</h2><p>Cambodian oud, Taif rose and amber, aged for ninety days before bottling.</p><div class="facts"><span><b>Size</b> 100 ml</span><span><b>Lasts</b> 12+ hours</span></div></section>
 <section class="chapter" data-from="0.710" data-to="0.860"><div class="eyebrow">The gift counter</div><h2>Wrapped to be given</h2><p>A black box, a gold ribbon and a handwritten card, ready in five minutes.</p><div class="facts"><span><b>Delivery</b> same day in Doha</span></div></section>
 <section class="chapter" data-from="0.88" data-to="1.01"><div class="eyebrow">Example prices</div><h2>Visit or order</h2><div class="rates"><span>Amber Majlis, 100 ml</span><span>QAR 950</span><span>Discovery set of 6</span><span>QAR 280</span><span>Raw oud chips, 3 g</span><span>QAR 450</span></div><button class="cta" id="cta" type="button">Order on WhatsApp</button><div class="note" id="note" role="status"></div></section>
 <div class="credit">Concept site by <a href="https://www.instagram.com/website.weaver/" target="_blank" rel="noopener">Website Weaver</a></div>
@@ -67,7 +67,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 <div class="bar"><i id="bar"></i></div>
 <div class="track" id="top"></div>
 <script>
-const N=181,P0=0.05,P1=0.8,PACKS=3;
+const N=201,P0=0.05,P1=0.8,PACKS=3;
 const cv=document.getElementById('cv'),cx=cv.getContext('2d'),bl=document.getElementById('blur'),bx=bl.getContext('2d');
 const chapters=[...document.querySelectorAll('.chapter')],bar=document.getElementById('bar'),load=document.getElementById('load');
 const frames=new Array(N);let loaded=0,drawn=-1,target=0,cur=0;
@@ -80,10 +80,11 @@ function size(){const r=cv.getBoundingClientRect(),d=Math.min(2,devicePixelRatio
 addEventListener('resize',size);size();
 function read(){const m=document.documentElement.scrollHeight-innerHeight;target=m>0?Math.min(1,Math.max(0,scrollY/m)):0}
 addEventListener('scroll',read,{passive:true});read();cur=target;
-function draw(fi){const im=nearest(fi);if(!im)return;const W=cv.width,H=cv.height,s=Math.max(W/im.width,H/im.height),w=im.width*s,h=im.height*s;
- cx.drawImage(im,(W-w)/2,(H-h)/2,w,h);bx.drawImage(im,0,0,36,64)}
-function tick(){cur+=(target-cur)*.12;const t=Math.min(1,Math.max(0,(cur-P0)/(P1-P0))),fi=Math.round(t*(N-1));
- if(fi!==drawn){draw(fi);if(frames[fi])drawn=fi}
+function cover(im,a){const W=cv.width,H=cv.height,s=Math.max(W/im.width,H/im.height),w=im.width*s,h=im.height*s;cx.globalAlpha=a;cx.drawImage(im,(W-w)/2,(H-h)/2,w,h);cx.globalAlpha=1}
+// blend the two nearest frames so scrubbing stays smooth between frames; only loaded frames are shown
+function draw(x){const i=Math.floor(x),f=x-i,a=frames[i]||nearest(i),b=frames[Math.min(N-1,i+1)];if(!a)return false;cover(a,1);if(b&&f>.02)cover(b,f);bx.drawImage(a,0,0,36,64);return !!frames[i]}
+function tick(){cur+=(target-cur)*.12;const t=Math.min(1,Math.max(0,(cur-P0)/(P1-P0))),x=t*(N-1),key=Math.round(x*16);
+ if(key!==drawn){if(draw(x))drawn=key}
  chapters.forEach(c=>c.classList.toggle('on',cur>=+c.dataset.from&&cur<+c.dataset.to));bar.style.width=(cur*100).toFixed(2)+'%';requestAnimationFrame(tick)}
 tick();
 document.getElementById('bookTop').addEventListener('click',()=>{const m=document.documentElement.scrollHeight-innerHeight;scrollTo({top:m,behavior:'smooth'})});
